@@ -14,7 +14,8 @@ export namespace Slave
     }
     export enum SlaveStatus
     {
-        Sensor,
-        Device
+        On,
+        Off,
+        Error
     }
 }
