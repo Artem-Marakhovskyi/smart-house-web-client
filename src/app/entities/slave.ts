@@ -1,6 +1,6 @@
 export class Slave{
     MAC: string;
-    connectionId: string; //atualy it's type is ObjectID
+    connectionId: string; //atualy its type is ObjectID
     slaveStatus: Slave.SlaveStatus;
     slaveType: Slave.SlaveType;
 }

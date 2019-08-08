@@ -6,9 +6,9 @@ module.exports = {
         'app': './src/main.ts'
       },
    output:{
-       path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
+       path: path.resolve(__dirname, './public'),     // The path to the output directory - './public'
        publicPath: '/public/',
-       filename: "[name].js"       // название создаваемого файла
+       filename: "[name].js"       // name of the created file
    },
    devServer: {
     historyApiFallback: true,
@@ -17,9 +17,9 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
    module:{
-       rules:[   //загрузчик для ts
+       rules:[   //bootloader for ts
            {
-               test: /\.ts$/, // определяем тип файлов
+               test: /\.ts$/, // determine the type of files
                use: [
                 {
                     loader: 'awesome-typescript-loader',
@@ -40,8 +40,8 @@ module.exports = {
    plugins: [
     new webpack.ContextReplacementPlugin(
         /angular(\\|\/)core/,
-        path.resolve(__dirname, 'src'), // каталог с исходными файлами
-      {} // карта маршрутов
+        path.resolve(__dirname, 'src'), // directory with source files
+      {} // route map
     )
   ]
 }
