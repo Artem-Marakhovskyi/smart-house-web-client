@@ -9,11 +9,14 @@ import { HttpService } from './http.service';
 })
 export class DevicesComponent implements OnInit { 
     devices: Array<Device>;
+    error: any;
  
     constructor(private httpService: HttpService){}
       
     ngOnInit(){
           
-        this.httpService.getData().subscribe((data:Array<Device>) => this.devices=data["deviceList"]);
+        this.httpService.getData().subscribe(
+            (data:Array<Device>) => this.devices=data["deviceList"],
+            error => {this.error = error.message; console.log(error);});
     }
 }
