@@ -1,12 +1,19 @@
-import { Component} from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { Component, OnInit} from '@angular/core';
 import { Device } from './entities/device';
+import { HttpService } from './http.service';
   
 @Component({
     selector: 'devices-app',
-    template: `<h3>Devices</h3>    
-    <p>MAC: {{device?.MAC}}</p>`
+    templateUrl: './devices.component.html',
+    providers: [HttpService]
 })
-export class DevicesComponent { 
-    device: Device;
+export class DevicesComponent implements OnInit { 
+    devices: Array<Device>;
+ 
+    constructor(private httpService: HttpService){}
+      
+    ngOnInit(){
+          
+        this.httpService.getData().subscribe((data:Array<Device>) => this.devices=data["deviceList"]);
+    }
 }

@@ -1,0 +1,9 @@
+<h3>Devices:</h3>    
+<ul>
+    <li *ngFor="let device of devices">
+        <p>MAC: {{device?.MAC}}</p>
+<ul>
+    <li *ngFor="let method of device?.methods">{{method?.address}}</li>
+</ul>
+</li>
+</ul>

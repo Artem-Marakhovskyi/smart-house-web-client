@@ -2,6 +2,8 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
  
 import {Routes, RouterModule} from '@angular/router';
+import { HttpClientModule }   from '@angular/common/http';
+
  
 import { AppComponent }   from './app.component';
 import { DevicesComponent }   from './devices.component';
@@ -16,7 +18,7 @@ const appRoutes: Routes =[
 ];
  
 @NgModule({
-    imports:      [ BrowserModule, RouterModule.forRoot(appRoutes)],
+    imports:      [ BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
     declarations: [ AppComponent, HomeComponent, DevicesComponent, NotFoundComponent],
     bootstrap:    [ AppComponent ]
 })
