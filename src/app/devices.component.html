@@ -1,9 +1,12 @@
 <h3>Devices:</h3>    
 <ul>
     <li *ngFor="let device of devices">
-        <p>MAC: {{device?.MAC}}</p>
+        <p>MAC address: {{device?.MAC}}</p>
+        <p>Connection Id: {{device?.connectionId}}</p>
+        <p>Status: {{device?.slaveStatus}}</p>
+        <p>Type: {{device?.slaveType}}</p>
 <ul>
-    <li *ngFor="let method of device?.methods">{{method?.address}}</li>
+    <li *ngFor="let method of device?.methods">Method name: {{method?.name}}</li>
 </ul>
 </li>
 </ul>
