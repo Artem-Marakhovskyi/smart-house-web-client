@@ -1,11 +1,11 @@
-export class Slave {
+export class HouseSlave {
     MAC: string;
     connectionId: string; //atualy its type is ObjectID
-    slaveStatus: Slave.SlaveStatus;
-    slaveType: Slave.SlaveType;
+    slaveStatus: HouseSlave.SlaveStatus;
+    slaveType: HouseSlave.SlaveType;
 }
 
-export namespace Slave {
+export namespace HouseSlave {
     export enum SlaveType {
         Sensor,
         Device

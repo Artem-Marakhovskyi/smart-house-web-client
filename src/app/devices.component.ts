@@ -5,6 +5,7 @@ import { HttpService } from './http.service';
 @Component({
     selector: 'devices-app',
     templateUrl: './devices.component.html',
+    styleUrls: ['./app.component.css'],
     providers: [HttpService]
 })
 export class DevicesComponent implements OnInit {
