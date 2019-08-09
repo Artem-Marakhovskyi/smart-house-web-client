@@ -27,7 +27,7 @@
         {
             "MAC": "A1:B2:C3:D5",
             "connectionId": "124",
-            "slaveStatus": "On",
+            "slaveStatus": "Off",
             "slaveType": "Device",
             "methods": [
                 {
@@ -40,6 +40,30 @@
                 },
                 {
                     "connectionId": "124",
+                    "name": "Off",
+                    "address": "Off",
+                    "args": [
+                        "bool"
+                    ]
+                }
+            ]
+        },
+        {
+            "MAC": "A1:B2:C3:D5",
+            "connectionId": "125",
+            "slaveStatus": "Error",
+            "slaveType": "Device",
+            "methods": [
+                {
+                    "connectionId": "123",
+                    "name": "On",
+                    "address": "On",
+                    "args": [
+                        "bool"
+                    ]
+                },
+                {
+                    "connectionId": "123",
                     "name": "Off",
                     "address": "Off",
                     "args": [

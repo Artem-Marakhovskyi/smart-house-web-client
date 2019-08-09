@@ -8,7 +8,7 @@
                 <th scope="col">Connection Id</th>
                 <th scope="col">Status</th>
                 <th scope="col">Type</th>
-                <th scope="col">Methods</th>
+                <th scope="col">On/Off</th>
             </tr>
         </thead>
         <tbody>
@@ -18,19 +18,41 @@
                 <td>{{device?.connectionId}}</td>
                 <td>{{device?.slaveStatus}}</td>
                 <td>{{device?.slaveType}}</td>
-                <td class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Methods
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" *ngFor="let method of device?.methods">{{method?.name}}</a>
+                <td>
+                    <div [ngSwitch]="device?.slaveStatus">
+                        <ng-template ngSwitchCase="On">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn active btn-outline-success">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
+                                </label>
+                                <label class="btn btn-outline-success">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
+                                </label>
+                            </div>
+                        </ng-template>
+                        <ng-template ngSwitchCase="Off">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-success">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
+                                </label>
+                                <label class="btn active btn-outline-success">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
+                                </label>
+                            </div>
+                        </ng-template>
+                        <ng-template ngSwitchCase="Error">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
+                                <label class="btn btn-outline-danger">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
+                                </label>
+                                <label class="btn btn-outline-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
+                                </label>
+                            </div>
+                        </ng-template>
                     </div>
-
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>
