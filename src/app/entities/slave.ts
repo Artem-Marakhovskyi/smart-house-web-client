@@ -1,19 +1,16 @@
-export class Slave{
+export class Slave {
     MAC: string;
     connectionId: string; //atualy its type is ObjectID
     slaveStatus: Slave.SlaveStatus;
     slaveType: Slave.SlaveType;
 }
 
-export namespace Slave
-{
-    export enum SlaveType
-    {
+export namespace Slave {
+    export enum SlaveType {
         Sensor,
         Device
     }
-    export enum SlaveStatus
-    {
+    export enum SlaveStatus {
         On,
         Off,
         Error

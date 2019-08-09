@@ -1,3 +1,3 @@
 import 'core-js';
-// zone используется angular
+// zone use angular
 import 'zone.js/dist/zone';

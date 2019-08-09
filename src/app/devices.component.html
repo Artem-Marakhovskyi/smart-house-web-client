@@ -1,14 +1,34 @@
-<h3>Devices:</h3>    
-<ul>
-    <li *ngFor="let device of devices">
-        <p>MAC address: {{device?.MAC}}</p>
-        <p>Connection Id: {{device?.connectionId}}</p>
-        <p>Status: {{device?.slaveStatus}}</p>
-        <p>Type: {{device?.slaveType}}</p>
-<ul>
-    <li *ngFor="let method of device?.methods">Method name: {{method?.name}}</li>
-</ul>
+<h3>Devices:</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">MAC address</th>
+            <th scope="col">Connection Id</th>
+            <th scope="col">Status</th>
+            <th scope="col">Type</th>
+            <th scope="col">Methods</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let device of devices; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{device?.MAC}}</td>
+            <td>{{device?.connectionId}}</td>
+            <td>{{device?.slaveStatus}}</td>
+            <td>{{device?.slaveType}}</td>
+            <td class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Methods
+                </a>
 
-</li>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" *ngFor="let method of device?.methods">{{method?.name}}</a>
+                </div>
 
-</ul>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
