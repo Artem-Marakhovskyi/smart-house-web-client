@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DevicesComponent } from './devices.component';
+import { SensorsComponent } from './sensors.component';
 import { HomeComponent } from './home.component';
 import { NotFoundComponent } from './not-found.component';
 
@@ -14,12 +15,13 @@ import { NotFoundComponent } from './not-found.component';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'devices', component: DevicesComponent },
+    { path: 'sensors', component: SensorsComponent },
     { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
     imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
-    declarations: [AppComponent, HomeComponent, DevicesComponent, NotFoundComponent],
+    declarations: [AppComponent, HomeComponent, DevicesComponent, SensorsComponent, NotFoundComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

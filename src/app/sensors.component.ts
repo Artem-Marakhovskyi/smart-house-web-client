@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Device } from './entities/device';
 import { HttpService } from './http.service';
+import { Sensor } from './entities/sensor';
 
 @Component({
-    selector: 'devices-app',
-    templateUrl: './devices.component.html',
+    selector: 'sensors-app',
+    templateUrl: './sensors.component.html',
     styleUrls: ['./app.component.css'],
     providers: [HttpService]
 })
-export class DevicesComponent implements OnInit {
-    devices: Array<Device>;
+export class SensorsComponent implements OnInit {
+    sensors: Array<Sensor>;
     error: any;
 
     constructor(private httpService: HttpService) { }
 
     ngOnInit() {
         this.httpService.getData().subscribe(
-            (data: Array<Device>) =>
-                this.devices = data,
+            (data: Array<Sensor>) =>
+                this.sensors = data["sensorList"],
             error => {
                 this.error = error.message;
                 console.log(error);

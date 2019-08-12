@@ -7,6 +7,6 @@ export class HttpService {
     constructor(private http: HttpClient) { }
 
     getData() {
-        return this.http.get('devices.json')
+        return this.http.get('http://localhost:8081/api/values')
     }
 }

@@ -1,9 +1,9 @@
 {
     "deviceList": [
         {
-            "MAC": "A1:B2:C3:D4",
+            "mac": "A1:B2:C3:D4",
             "connectionId": "123",
-            "slaveStatus": "On",
+            "status": "On",
             "slaveType": "Device",
             "methods": [
                 {
@@ -25,9 +25,9 @@
             ]
         },
         {
-            "MAC": "A1:B2:C3:D5",
+            "mac": "A1:B2:C3:D5",
             "connectionId": "124",
-            "slaveStatus": "Off",
+            "status": "Off",
             "slaveType": "Device",
             "methods": [
                 {
@@ -49,9 +49,9 @@
             ]
         },
         {
-            "MAC": "A1:B2:C3:D5",
+            "mac": "A1:B2:C3:D5",
             "connectionId": "125",
-            "slaveStatus": "Error",
+            "status": "Error",
             "slaveType": "Device",
             "methods": [
                 {
