@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Device } from './entities/device';
 import { HttpService } from './http.service';
+import { HouseSlaveInvoker } from './entities/houseSlaveInvoker';
 
 @Component({
     selector: 'devices-app',
@@ -11,6 +12,7 @@ import { HttpService } from './http.service';
 export class DevicesComponent implements OnInit {
     devices: Array<Device>;
     error: any;
+    done: boolean = false;
 
     constructor(private httpService: HttpService) { }
 
@@ -23,5 +25,10 @@ export class DevicesComponent implements OnInit {
                 console.log(error);
             }
         );
+    }
+    submit(houseSlaveInvoker: HouseSlaveInvoker){
+        this.httpService.postRunMethod(houseSlaveInvoker).subscribe((data:HouseSlaveInvoker) => {
+            this.ngOnInit();
+        });
     }
 }

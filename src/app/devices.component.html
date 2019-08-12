@@ -31,7 +31,7 @@
                 <td>
                     <div [ngSwitch]="device?.status">
                         <ng-template ngSwitchCase="0">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons" (click)="submit(device?.methods[1])">
                                 <label class="btn active btn-outline-success">
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked> On
                                 </label>
@@ -41,7 +41,7 @@
                             </div>
                         </ng-template>
                         <ng-template ngSwitchCase="1">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons" (click)="submit(device?.methods[0])">
                                 <label class="btn btn-outline-success">
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked> On
                                 </label>
