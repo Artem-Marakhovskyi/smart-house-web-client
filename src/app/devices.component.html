@@ -5,7 +5,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">MAC address</th>
-                <th scope="col">Connection Id</th>
+                <th scope="col">Name</th>
                 <th scope="col">Status</th>
                 <th scope="col">On/Off</th>
             </tr>
@@ -14,7 +14,7 @@
             <tr *ngFor="let device of devices; let i = index">
                 <th scope="row">{{i+1}}</th>
                 <td>{{device?.mac}}</td>
-                <td>{{device?.connectionId}}</td>
+                <td>{{device?.name}}</td>
                 <td [ngSwitch]="device?.status">
                     <ng-template ngSwitchCase="0">
                         <a>On</a>
@@ -34,14 +34,14 @@
                                 <label class="btn active btn-outline-success" disabled>
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked> On
                                 </label>
-                                <label class="btn btn-outline-success" (click)="submit(device?.methods[1])">
+                                <label class="btn btn-outline-success" (click)="submit(device?.off)">
                                     <input type="radio" name="options" id="option2" autocomplete="off"> Off
                                 </label>
                             </div>
                         </ng-template>
                         <ng-template ngSwitchCase="1">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-success" (click)="submit(device?.methods[0])">
+                                <label class="btn btn-outline-success" (click)="submit(device?.on)">
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked> On
                                 </label>
                                 <label class="btn active btn-outline-success" disabled>

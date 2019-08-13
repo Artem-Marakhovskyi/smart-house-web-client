@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HouseSlaveInvoker } from './entities/houseSlaveInvoker';
+import { BaseHouseSlaveInvoker } from './entities/BaseHouseSlaveInvoker';
 
 @Injectable()
 export class HttpService {
 
     constructor(private http: HttpClient) { }
 
-    getData() {
+    getDevices() {
         return this.http.get('http://localhost:8083/api/values');
     }
-    postRunMethod(houseSlaveInvoker: HouseSlaveInvoker) {
-        const body = { connectionId: houseSlaveInvoker.connectionId, name: houseSlaveInvoker.name, address: houseSlaveInvoker.address, args: houseSlaveInvoker.args};
+    getSensors() {
+        return this.http.get('http://localhost:8083/api/values');
+    }
+    postRunMethod(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
+        const body = { connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address};
         return this.http.post('http://localhost:8083/api/values/run', body);
     }
 }
