@@ -1,20 +1,22 @@
-<h3 class="container-fluid"><strong>Devices:</strong></h3>
-<div class="container-fluid">
-    <table class="table table-hover table-bordered">
+<br>
+<h3 class="container-fluid col-md-10 offset-md-1"><strong>Devices:</strong></h3>
+<br>
+<div class="container-fluid col-md-10 offset-md-1">
+    <table class="table table-hover table-bordered text-center ">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">MAC address</th>
+                <th scope="col" style="width: 60px;" >#</th>
+                <th scope="col" style="width: 145px;">MAC address</th>
                 <th scope="col">Name</th>
-                <th scope="col">Status</th>
-                <th scope="col">On/Off</th>
+                <th scope="col" style="width: 100px;">Status</th>
+                <th scope="col" style="width: 145px;">On/Off</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let device of devices; let i = index">
                 <th scope="row">{{i+1}}</th>
                 <td>{{device?.mac}}</td>
-                <td>{{device?.name}}</td>
+                <td class="text-left">{{device?.name}}</td>
                 <td [ngSwitch]="device?.status">
                     <ng-template ngSwitchCase="0">
                         <a>On</a>

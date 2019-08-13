@@ -1,68 +1,70 @@
-<h3 class="container-fluid"><strong>Sensors:</strong></h3>
-<div class="container-fluid">
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">MAC address</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">On/Off</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let sensor of sensors; let i = index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{sensor?.mac}}</td>
-                    <td>{{sensor?.name}}</td>
-                    <td [ngSwitch]="sensor?.status">
+<br>
+<h3 class="container-fluid col-md-10 offset-md-1"><strong>Sensors:</strong></h3>
+<br>
+<div class="container-fluid col-md-10 offset-md-1">
+    <table class="table table-hover table-bordered text-center">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 60px;">#</th>
+                <th scope="col" style="width: 145px;">MAC address</th>
+                <th scope="col">Name</th>
+                <th scope="col" style="width: 100px;">Status</th>
+                <th scope="col" style="width: 145px;">On/Off</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sensor of sensors; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{sensor?.mac}}</td>
+                <td class="text-left">{{sensor?.name}}</td>
+                <td [ngSwitch]="sensor?.status">
+                    <ng-template ngSwitchCase="0">
+                        <a>On</a>
+                    </ng-template>
+                    <ng-template ngSwitchCase="1">
+                        <a>Off</a>
+                    </ng-template>
+                    <ng-template ngSwitchCase="2">
+                        <a>Error</a>
+                    </ng-template>
+                </td>
+
+                <td>
+                    <div [ngSwitch]="sensor?.status">
                         <ng-template ngSwitchCase="0">
-                            <a>On</a>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn active btn-outline-success" disabled>
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
+                                </label>
+                                <label class="btn btn-outline-success" (click)="submit(sensor?.off)">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
+                                </label>
+                            </div>
                         </ng-template>
                         <ng-template ngSwitchCase="1">
-                            <a>Off</a>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-success" (click)="submit(sensor?.on)">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
+                                </label>
+                                <label class="btn active btn-outline-success" disabled>
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
+                                </label>
+                            </div>
                         </ng-template>
                         <ng-template ngSwitchCase="2">
-                            <a>Error</a>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
+                                <label class="btn btn-outline-danger">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
+                                </label>
+                                <label class="btn btn-outline-danger">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
+                                </label>
+                            </div>
                         </ng-template>
-                    </td>
-    
-                    <td>
-                        <div [ngSwitch]="sensor?.status">
-                            <ng-template ngSwitchCase="0">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn active btn-outline-success" disabled>
-                                        <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                    </label>
-                                    <label class="btn btn-outline-success" (click)="submit(sensor?.off)">
-                                        <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                    </label>
-                                </div>
-                            </ng-template>
-                            <ng-template ngSwitchCase="1">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-outline-success" (click)="submit(sensor?.on)">
-                                        <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                    </label>
-                                    <label class="btn active btn-outline-success" disabled>
-                                        <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                    </label>
-                                </div>
-                            </ng-template>
-                            <ng-template ngSwitchCase="2">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
-                                    <label class="btn btn-outline-danger">
-                                        <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                    </label>
-                                    <label class="btn btn-outline-danger">
-                                        <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                    </label>
-                                </div>
-                            </ng-template>
-                        </div>
-                    </td>
-    
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
