@@ -31,4 +31,9 @@ export class DevicesComponent implements OnInit {
             this.ngOnInit();
         });
     }
+    delete(device: Device){
+        this.httpService.deleteDevice(device).subscribe((data:Device) => {
+            this.ngOnInit();
+        });
+    }
 }

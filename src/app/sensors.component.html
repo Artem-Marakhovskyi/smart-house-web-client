@@ -8,6 +8,7 @@
                 <th scope="col">Name</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
+                <th scope="col" style="width: 145px;">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -61,7 +62,9 @@
                         </ng-template>
                     </div>
                 </td>
-
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="delete(sensor)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>

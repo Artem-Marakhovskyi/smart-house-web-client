@@ -31,4 +31,9 @@ export class SensorsComponent implements OnInit {
             this.ngOnInit();
         });
     }
+    delete(sensor: Sensor){
+        this.httpService.deleteSensor(sensor).subscribe((data:Sensor) => {
+            this.ngOnInit();
+        });
+    }
 }

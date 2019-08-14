@@ -3,11 +3,12 @@
     <table class="table table-hover table-bordered text-center ">
         <thead>
             <tr>
-                <th scope="col" style="width: 60px;" >#</th>
+                <th scope="col" style="width: 60px;">#</th>
                 <th scope="col" style="width: 145px;">MAC address</th>
                 <th scope="col">Name</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
+                <th scope="col" style="width: 145px;">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -60,6 +61,9 @@
                             </div>
                         </ng-template>
                     </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="delete(device)">Delete</button>
                 </td>
 
             </tr>
