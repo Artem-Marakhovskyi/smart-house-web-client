@@ -10,22 +10,20 @@ export class HttpService {
     constructor(private http: HttpClient) { }
 
     getDevices() {
-        return this.http.get('http://localhost:54058/api/devices');
+        return this.http.get('http://a8909b38.ngrok.io/api/hub/devices');
     }
     deleteDevice(device: Device) {
-        const body = { mac: device.mac };
-        return this.http.delete('http://localhost:54058/api/devices/delete' + body);
+        return this.http.delete('http://a8909b38.ngrok.io/api/hub/devices' + device.mac);
     }
     getSensors() {
-        return this.http.get('http://localhost:54058/api/sensors');
+        return this.http.get('http://a8909b38.ngrok.io/api/hub/sensors');
     }
     deleteSensor(sensor: Sensor) {
-        const body = { mac: sensor.mac };
-        return this.http.delete('http://localhost:54058/api/sensors/delete' + body);
+        return this.http.delete('http://a8909b38.ngrok.io/api/hub/sensors' + sensor.mac);
     }
-    postRunMethod(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
-        const body = { connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address };
-        return this.http.post('http://localhost:54058/api/devices/run', body);
+    putRunMethod(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
+        const body = { connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address };// connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address
+        return this.http.put('http://a8909b38.ngrok.io/api/hub/devices-sensors', body);
     }
 
 }

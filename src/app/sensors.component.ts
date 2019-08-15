@@ -27,7 +27,7 @@ export class SensorsComponent implements OnInit {
     }
 
     submit(baseHouseSlaveInvoker: BaseHouseSlaveInvoker){
-        this.httpService.postRunMethod(baseHouseSlaveInvoker).subscribe((data:BaseHouseSlaveInvoker) => {
+        this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe((data:BaseHouseSlaveInvoker) => {
             this.ngOnInit();
         });
     }

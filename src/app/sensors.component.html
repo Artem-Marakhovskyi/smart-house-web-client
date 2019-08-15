@@ -6,6 +6,7 @@
                 <th scope="col" style="width: 60px;">#</th>
                 <th scope="col" style="width: 145px;">MAC address</th>
                 <th scope="col">Name</th>
+                <th scope="col">Value</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
                 <th scope="col" style="width: 145px;">Delete</th>
@@ -16,6 +17,7 @@
                 <th scope="row">{{i+1}}</th>
                 <td>{{sensor?.mac}}</td>
                 <td class="text-left">{{sensor?.name}}</td>
+                <td>{{sensor?.value}}</td>
                 <td [ngSwitch]="sensor?.status">
                     <ng-template ngSwitchCase="0">
                         <a>On</a>

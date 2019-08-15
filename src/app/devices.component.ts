@@ -27,7 +27,7 @@ export class DevicesComponent implements OnInit {
         );
     }
     submit(houseSlaveInvoker: HouseSlaveInvoker){
-        this.httpService.postRunMethod(houseSlaveInvoker).subscribe((data:HouseSlaveInvoker) => {
+        this.httpService.putRunMethod(houseSlaveInvoker).subscribe((data:HouseSlaveInvoker) => {
             this.ngOnInit();
         });
     }
