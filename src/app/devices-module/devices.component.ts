@@ -26,13 +26,13 @@ export class DevicesComponent implements OnInit {
             }
         );
     }
-    submit(houseSlaveInvoker: HouseSlaveInvoker){
-        this.httpService.putRunMethod(houseSlaveInvoker).subscribe((data:HouseSlaveInvoker) => {
+    submit(houseSlaveInvoker: HouseSlaveInvoker) {
+        this.httpService.putRunMethod(houseSlaveInvoker).subscribe((data: HouseSlaveInvoker) => {
             this.ngOnInit();
         });
     }
-    delete(device: Device){
-        this.httpService.deleteDevice(device).subscribe((data:Device) => {
+    delete(device: Device) {
+        this.httpService.deleteDevice(device).subscribe((data: Device) => {
             this.ngOnInit();
         });
     }

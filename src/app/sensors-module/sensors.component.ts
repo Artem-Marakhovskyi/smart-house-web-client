@@ -26,13 +26,13 @@ export class SensorsComponent implements OnInit {
         );
     }
 
-    submit(baseHouseSlaveInvoker: BaseHouseSlaveInvoker){
-        this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe((data:BaseHouseSlaveInvoker) => {
+    submit(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
+        this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe((data: BaseHouseSlaveInvoker) => {
             this.ngOnInit();
         });
     }
-    delete(sensor: Sensor){
-        this.httpService.deleteSensor(sensor).subscribe((data:Sensor) => {
+    delete(sensor: Sensor) {
+        this.httpService.deleteSensor(sensor).subscribe((data: Sensor) => {
             this.ngOnInit();
         });
     }
