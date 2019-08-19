@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Sensor } from '../entities/sensor';
 import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'sensors-app',
@@ -12,6 +13,7 @@ import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
 export class SensorsComponent implements OnInit {
     sensors: Array<Sensor>;
     error: any;
+    public selectedSensor: Sensor;
 
     constructor(private httpService: HttpService) { }
 
@@ -26,11 +28,17 @@ export class SensorsComponent implements OnInit {
         );
     }
 
-    submit(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
+    switchState(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
         this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe((data: BaseHouseSlaveInvoker) => {
             this.ngOnInit();
         });
     }
+
+    showStatistics(sensor: Sensor): Observable<Sensor> {
+        this.selectedSensor = sensor;
+        return sensor;
+    }
+
     delete(sensor: Sensor) {
         this.httpService.deleteSensor(sensor).subscribe((data: Sensor) => {
             this.ngOnInit();

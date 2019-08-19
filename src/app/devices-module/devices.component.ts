@@ -12,8 +12,7 @@ import { HouseSlaveInvoker } from '../entities/houseSlaveInvoker';
 export class DevicesComponent implements OnInit {
     devices: Array<Device>;
     error: any;
-    done: boolean = false;
-
+        
     constructor(private httpService: HttpService) { }
 
     ngOnInit() {
