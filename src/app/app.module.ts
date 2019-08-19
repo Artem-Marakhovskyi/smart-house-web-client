@@ -6,9 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { DevicesComponent } from './devices.component';
-import { SensorsComponent } from './sensors.component';
-import { HomeComponent } from './home.component';
+import { DevicesComponent } from './devices-module/devices.component';
+import { SensorsComponent } from './sensors-module/sensors.component';
+import { HomeComponent } from './home-module/home.component';
 import { NotFoundComponent } from './not-found.component';
 
 // определение маршрутов

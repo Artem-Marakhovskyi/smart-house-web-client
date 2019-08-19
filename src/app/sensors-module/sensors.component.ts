@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './http.service';
-import { Sensor } from './entities/sensor';
-import { BaseHouseSlaveInvoker } from './entities/BaseHouseSlaveInvoker';
+import { HttpService } from '../services/http.service';
+import { Sensor } from '../entities/sensor';
+import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
 
 @Component({
     selector: 'sensors-app',
     templateUrl: './sensors.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['../app.component.css'],
     providers: [HttpService]
 })
 export class SensorsComponent implements OnInit {

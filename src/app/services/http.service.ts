@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseHouseSlaveInvoker } from './entities/BaseHouseSlaveInvoker';
-import { Device } from './entities/device';
-import { Sensor } from './entities/sensor';
+import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
+import { Device } from '../entities/device';
+import { Sensor } from '../entities/sensor';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class HttpService {
 
     constructor(private http: HttpClient) { }
 
-    getDevices() {
-        return this.http.get('http://a8909b38.ngrok.io/api/hub/devices');
+    getDevices(): Observable<Array<Device>> {
+        return this.http.get<Array<Device>>('http://a8909b38.ngrok.io/api/hub/devices');
     }
     deleteDevice(device: Device) {
         return this.http.delete('http://a8909b38.ngrok.io/api/hub/devices' + device.mac);
     }
-    getSensors() {
-        return this.http.get('http://a8909b38.ngrok.io/api/hub/sensors');
+    getSensors(): Observable<Array<Sensor>> {
+        return this.http.get<Array<Sensor>>('http://a8909b38.ngrok.io/api/hub/sensors');
     }
     deleteSensor(sensor: Sensor) {
         return this.http.delete('http://a8909b38.ngrok.io/api/hub/sensors' + sensor.mac);

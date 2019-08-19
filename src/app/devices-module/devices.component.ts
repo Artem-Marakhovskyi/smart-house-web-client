@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Device } from './entities/device';
-import { HttpService } from './http.service';
-import { HouseSlaveInvoker } from './entities/houseSlaveInvoker';
+import { Device } from '../entities/device';
+import { HttpService } from '../services/http.service';
+import { HouseSlaveInvoker } from '../entities/houseSlaveInvoker';
 
 @Component({
     selector: 'devices-app',
     templateUrl: './devices.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['../app.component.css'],
     providers: [HttpService]
 })
 export class DevicesComponent implements OnInit {
