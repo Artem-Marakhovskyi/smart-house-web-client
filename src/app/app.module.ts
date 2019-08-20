@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'devices', component: DevicesComponent },
     { path: 'sensors', component: SensorsComponent },
-    { path: 'statistics', component: StatisticsComponent },
+    { path: 'statistics/:mac', component: StatisticsComponent },
     { path: '**', component: NotFoundComponent }
 ];
 

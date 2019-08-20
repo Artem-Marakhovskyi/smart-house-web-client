@@ -3,6 +3,7 @@ import { HttpService } from '../services/http.service';
 import { Sensor } from '../entities/sensor';
 import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'sensors-app',
@@ -15,7 +16,9 @@ export class SensorsComponent implements OnInit {
     error: any;
     public selectedSensor: Sensor;
 
-    constructor(private httpService: HttpService) { }
+    constructor(
+        private readonly httpService: HttpService,
+        private readonly router: Router ) { }
 
     ngOnInit() {
         this.httpService.getSensors().subscribe(
@@ -34,9 +37,8 @@ export class SensorsComponent implements OnInit {
         });
     }
 
-    showStatistics(sensor: Sensor): Observable<Sensor> {
-        this.selectedSensor = sensor;
-        return sensor;
+    showStatistics(sensor: Sensor): void {
+        this.router.navigate(['statistics', sensor.mac]);
     }
 
     delete(sensor: Sensor) {
