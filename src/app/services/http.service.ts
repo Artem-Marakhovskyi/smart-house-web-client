@@ -25,22 +25,23 @@ export class HttpService {
         return this.http.get<Array<Device>>(this.url + 'api/devices');
     }
     deleteDevice(device: Device) {
-        return this.http.delete(this.url + 'api/devices?mac=' + device.mac);
+        return this.http.delete(this.url + 'api/devices/mac?mac=' + device.mac);
     }
     getSensors(): Observable<Array<Sensor>> {
         return this.http.get<Array<Sensor>>(this.url + 'api/sensors');
     }
 
     getSensor(mac: String): Observable<Sensor> {
-        return this.http.get<Sensor>(this.url + 'api/sensors?mac=' + mac);
+        return this.http.get<Sensor>(this.url + 'api/sensors/mac?mac=' + mac);
     }
 
     deleteSensor(sensor: Sensor) {
-        return this.http.delete(this.url + 'api/sensors?mac=' + sensor.mac);
+        return this.http.delete(this.url + 'api/sensors/mac?mac=' + sensor.mac);
     }
+
     putRunMethod(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
         const body = { connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address };// connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address
-        return this.http.put('this.url+ api/devices-sensors', body);
+        return this.http.put(this.url + 'api/hub/devices-sensors', body);
     }
 
     getAllTelemetry(date: String): Observable<Array<TelemetryData>> {
