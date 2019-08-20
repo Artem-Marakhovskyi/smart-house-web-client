@@ -6,16 +6,15 @@ import { SensorsComponent } from '../sensors-module/sensors.component';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'sensors-app',
-    //templateUrl: './sensors.component.html',
-    template: `
-    Bank Name: {{mac}}
-  `,
+    selector: 'statistics-app',
+    templateUrl: './statistics.component.html',
     styleUrls: ['../app.component.css'],
     providers: [HttpService]
 })
+
 export class StatisticsComponent implements OnInit {
 
+    
     public mac: string = "null";
     sensor: Sensor;
     error: any;
@@ -30,14 +29,14 @@ export class StatisticsComponent implements OnInit {
 
 
     ngOnInit() {
-        // this.httpService.getSensor(this.sensor).subscribe(
-        //     (data: Sensor) =>
-        //         this.sensor = data,
-        //     error => {
-        //         this.error = error.message;
-        //         console.log(error);
-        //     }
-        // );
+        this.httpService.getSensor(this.mac).subscribe(
+            (data: Sensor) =>
+                this.sensor = data,
+            error => {
+                this.error = error.message;
+                console.log(error);
+            }
+        );
     }
 
     // submit(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {

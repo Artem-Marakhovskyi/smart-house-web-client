@@ -1,20 +1,17 @@
-<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center"><strong>Sensors</strong></h1>
+<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center"><strong>Statistics for {{mac}}</strong></h1>
 <div class="container-fluid col-md-10 offset-md-1 ">
     <table class="table table-hover table-bordered text-center mxwdth1400">
         <thead>
             <tr>
-                <th scope="col" style="width: 60px;">#</th>
                 <th scope="col" style="width: 145px;">MAC address</th>
-                <th scope="col">Name</th>                
+                <th scope="col">Name</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
                 <th scope="col" style="width: 145px;">Delete</th>
-                <th scope="col" style="width: 155px;">Show statistics</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let sensor of sensors; let i = index">
-                <th scope="row">{{i+1}}</th>
                 <td>{{sensor?.mac}}</td>
                 <td class="text-left">{{sensor?.name}}</td>
                 <td [ngSwitch]="sensor?.status">
@@ -66,10 +63,8 @@
                 <td>
                     <button type="button" class="btn btn-danger" (click)="delete(sensor)">Delete</button>
                 </td>
-                <td>
-                    <button type="button" class="btn btn-danger"  (click)="showStatistics(sensor)">Show statistics</button>
-                </td>
             </tr>
         </tbody>
     </table>
+    
 </div>
