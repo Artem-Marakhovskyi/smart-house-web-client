@@ -1,8 +1,6 @@
-export namespace TimePeriod {
-    export enum Period {
-        Hour,
-        Day,
-        Week,
-        Month
-    }
+export enum TimePeriod {
+    Hour,
+    Day,
+    Week,
+    Month
 }

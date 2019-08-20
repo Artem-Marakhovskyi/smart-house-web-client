@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class StatisticsComponent implements OnInit {
 
-    
+
     public mac: string = "null";
     sensor: Sensor;
     error: any;
@@ -23,7 +23,7 @@ export class StatisticsComponent implements OnInit {
         private httpService: HttpService,
         private route: ActivatedRoute
     ) {
-         this.mac = this.route.snapshot.params['mac'];
+        this.mac = this.route.snapshot.params['mac'];
     }
 
 
@@ -39,14 +39,4 @@ export class StatisticsComponent implements OnInit {
         );
     }
 
-    // submit(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
-    //     this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe((data: BaseHouseSlaveInvoker) => {
-    //         this.ngOnInit();
-    //     });
-    // }
-    // delete(sensor: Sensor) {
-    //     this.httpService.deleteSensor(sensor).subscribe((data: Sensor) => {
-    //         this.ngOnInit();
-    //     });
-    // }
 }

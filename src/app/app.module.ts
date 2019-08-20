@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule }   from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,6 +11,7 @@ import { SensorsComponent } from './sensors-module/sensors.component';
 import { StatisticsComponent } from './statistics-module/statistics.component';
 import { HomeComponent } from './home-module/home.component';
 import { NotFoundComponent } from './not-found.component';
+import { ConnectionStringProviderService } from './services/connectionStringProvider.service';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -22,8 +23,9 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
+    imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes), FormsModule],
     declarations: [AppComponent, HomeComponent, DevicesComponent, SensorsComponent, StatisticsComponent, NotFoundComponent],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [ConnectionStringProviderService]
 })
 export class AppModule { }

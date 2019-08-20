@@ -1,23 +1,13 @@
 import { BaseHouseSlaveInvoker } from "./BaseHouseSlaveInvoker";
+import { SlaveStatus } from "./slaveStatus";
+import { SlaveType } from "./slaveType";
 
 export class HouseSlave {
     mac: string;
     name: string;
     connectionId: string;
-    status: HouseSlave.SlaveStatus;
-    slaveType: HouseSlave.SlaveType;
+    status: SlaveStatus;
+    slaveType: SlaveType;
     on: BaseHouseSlaveInvoker;
     off: BaseHouseSlaveInvoker;
-}
-
-export namespace HouseSlave {
-    export enum SlaveType {
-        Sensor,
-        Device
-    }
-    export enum SlaveStatus {
-        On,
-        Off,
-        Error
-    }
 }
