@@ -1,76 +1,18 @@
-{
-    "deviceList": [
-        {
-            "mac": "A1:B2:C3:D4",
-            "connectionId": "123",
-            "status": "On",
-            "slaveType": "Device",
-            "methods": [
-                {
-                    "connectionId": "123",
-                    "name": "On",
-                    "address": "On",
-                    "args": [
-                        "bool"
-                    ]
-                },
-                {
-                    "connectionId": "123",
-                    "name": "Off",
-                    "address": "Off",
-                    "args": [
-                        "bool"
-                    ]
-                }
-            ]
+[
+    {
+        "mac": "11:AA:22:BB",
+        "name": "SensorLight",
+        "connectionId": "scaAQiS3xEO36o4JucITMg",
+        "status": 0,
+        "on": {
+            "connectionId": "scaAQiS3xEO36o4JucITMg",
+            "name": "On",
+            "address": "On"
         },
-        {
-            "mac": "A1:B2:C3:D5",
-            "connectionId": "124",
-            "status": "Off",
-            "slaveType": "Device",
-            "methods": [
-                {
-                    "connectionId": "124",
-                    "name": "On",
-                    "address": "On",
-                    "args": [
-                        "bool"
-                    ]
-                },
-                {
-                    "connectionId": "124",
-                    "name": "Off",
-                    "address": "Off",
-                    "args": [
-                        "bool"
-                    ]
-                }
-            ]
-        },
-        {
-            "mac": "A1:B2:C3:D5",
-            "connectionId": "125",
-            "status": "Error",
-            "slaveType": "Device",
-            "methods": [
-                {
-                    "connectionId": "123",
-                    "name": "On",
-                    "address": "On",
-                    "args": [
-                        "bool"
-                    ]
-                },
-                {
-                    "connectionId": "123",
-                    "name": "Off",
-                    "address": "Off",
-                    "args": [
-                        "bool"
-                    ]
-                }
-            ]
+        "off": {
+            "connectionId": "scaAQiS3xEO36o4JucITMg",
+            "name": "Off",
+            "address": "Off"
         }
-    ]
-}
+    }
+]

@@ -18,10 +18,20 @@ export class SensorsComponent implements OnInit {
 
     constructor(
         private readonly httpService: HttpService,
-        private readonly router: Router ) { }
+        private readonly router: Router) { }
 
+    // ngOnInit() {
+    //     this.httpService.getSensors().subscribe(
+    //         (data: Array<Sensor>) =>
+    //             this.sensors = data,
+    //         error => {
+    //             this.error = error.message;
+    //             console.log(error);
+    //         }
+    //     );
+    // }
     ngOnInit() {
-        this.httpService.getSensors().subscribe(
+        this.httpService.getFakeSensorsFromJSON().subscribe( //Fake
             (data: Array<Sensor>) =>
                 this.sensors = data,
             error => {

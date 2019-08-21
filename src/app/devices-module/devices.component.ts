@@ -12,11 +12,21 @@ import { HouseSlaveInvoker } from '../entities/houseSlaveInvoker';
 export class DevicesComponent implements OnInit {
     devices: Array<Device>;
     error: any;
-        
+
     constructor(private httpService: HttpService) { }
 
+    // ngOnInit() {
+    //     // this.httpService.getDevices().subscribe(
+    //     //     (data: Array<Device>) =>
+    //     //         this.devices = data,
+    //     //     error => {
+    //     //         this.error = error.message;
+    //     //         console.log(error);
+    //     //     }
+    //     // );
+    // }
     ngOnInit() {
-        this.httpService.getDevices().subscribe(
+        this.httpService.getFakeDevicesFromJSON().subscribe( //Fake
             (data: Array<Device>) =>
                 this.devices = data,
             error => {

@@ -1,0 +1,37 @@
+[
+    {
+        "MACSensor": "MacTest",
+        "value": "0.5",
+        "type": "string"
+    },
+    {
+        "MACSensor": "MacTest",
+        "value": "1.5",
+        "type": "string"
+    },
+    {
+        "MACSensor": "MacTest",
+        "value": "3.5",
+        "type": "string"
+    },
+    {
+        "MACSensor": "MacTest",
+        "value": "3.5",
+        "type": "string"
+    },
+    {
+        "MACSensor": "MacTest",
+        "value": "3.5",
+        "type": "string"
+    },
+    {
+        "MACSensor": "MacTest",
+        "value": "3.5",
+        "type": "string"
+    },
+    {
+        "MACSensor": "MacTest",
+        "value": "3.5",
+        "type": "string"
+    }
+]

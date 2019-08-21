@@ -47,4 +47,17 @@ export class HttpService {
     getAllTelemetry(date: String): Observable<Array<TelemetryData>> {
         return this.http.get<Array<TelemetryData>>(this.url + ' api/sensors/getAllTelemetry?date=' + date);
     }
+
+    //-----------Fake
+    getFakeTelemetryFromJSON(): Observable<Array<TelemetryData>> {
+        return this.http.get<Array<TelemetryData>>('telemetry.json');
+    }
+
+    getFakeDevicesFromJSON(): Observable<Array<Device>> {
+        return this.http.get<Array<Device>>('devices.json');
+    }
+
+    getFakeSensorsFromJSON(): Observable<Array<Sensor>> {
+        return this.http.get<Array<Sensor>>('devices.json');
+    }
 }
