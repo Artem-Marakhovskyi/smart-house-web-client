@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let sensor of sensors; let i = index">
+            <tr>
                 <td>{{sensor?.mac}}</td>
                 <td class="text-left">{{sensor?.name}}</td>
                 <td [ngSwitch]="sensor?.status">
@@ -66,5 +66,16 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <div style="display: block">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
     
 </div>

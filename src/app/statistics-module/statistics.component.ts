@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Sensor } from '../entities/sensor';
-import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
-import { SensorsComponent } from '../sensors-module/sensors.component';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -38,5 +36,17 @@ export class StatisticsComponent implements OnInit {
             }
         );
     }
+
+    public barChartOptions = {
+        scaleShowVerticalLines: false,
+        responsive: true
+      };
+      public barChartLabels = ['10:00', '10:10', '10:20', '10:30', '10:40', '10:50', '11:00'];
+      public barChartType = 'line';
+      public barChartLegend = true;
+      public barChartData = [
+        {data: [25, 31, 32, 29, 32, 27, 24], label: this.mac}
+      ];
+      
 
 }

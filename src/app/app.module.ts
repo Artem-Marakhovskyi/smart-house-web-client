@@ -12,6 +12,7 @@ import { StatisticsComponent } from './statistics-module/statistics.component';
 import { HomeComponent } from './home-module/home.component';
 import { NotFoundComponent } from './not-found.component';
 import { ConnectionStringProviderService } from './services/connectionStringProvider.service';
+import { ChartsModule } from 'ng2-charts';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes), FormsModule],
+    imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes), FormsModule, ChartsModule],
     declarations: [AppComponent, HomeComponent, DevicesComponent, SensorsComponent, StatisticsComponent, NotFoundComponent],
     bootstrap: [AppComponent],
     providers: [ConnectionStringProviderService]
