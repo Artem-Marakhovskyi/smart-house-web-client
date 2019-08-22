@@ -6,6 +6,7 @@ import { Sensor } from '../entities/sensor';
 import { Observable } from 'rxjs';
 import { TelemetryData } from '../entities/telemetryData';
 import { ConnectionStringProviderService } from './connectionStringProvider.service';
+import { TelemetryDynamic } from '../entities/telemetryDynamic';
 
 @Injectable()
 
@@ -44,13 +45,13 @@ export class HttpService {
         return this.http.put(this.url + 'api/hub/devices-sensors', body);
     }
 
-    getAllTelemetry(date: String): Observable<Array<TelemetryData>> {
-        return this.http.get<Array<TelemetryData>>(this.url + ' api/sensors/getAllTelemetry?date=' + date);
+    getAllTelemetry(date: String): Observable<Array<TelemetryDynamic>> {
+        return this.http.get<Array<TelemetryDynamic>>(this.url + ' api/sensors/getAllTelemetry?date=' + date);
     }
 
     //-----------Fake
-    getFakeTelemetryFromJSON(): Observable<Array<TelemetryData>> {
-        return this.http.get<Array<TelemetryData>>('telemetry.json');
+    getFakeTelemetryFromJSON(): Observable<Array<TelemetryDynamic>> {
+        return this.http.get<Array<TelemetryDynamic>>('telemetry.json');
     }
 
     getFakeDevicesFromJSON(): Observable<Array<Device>> {
