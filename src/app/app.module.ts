@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { DevicesComponent } from './devices-module/devices.component';
 import { SensorsComponent } from './sensors-module/sensors.component';
@@ -12,6 +13,8 @@ import { HomeComponent } from './home-module/home.component';
 import { NotFoundComponent } from './not-found.component';
 import { ConnectionStringProviderService } from './services/connectionStringProvider.service';
 import { ChartsModule } from 'ng2-charts';
+import { XunkCalendarModule } from './xunk-calendar/xunk-calendar.module';
+
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -23,7 +26,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes), FormsModule, ChartsModule],
+    imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes), FormsModule, ChartsModule, XunkCalendarModule],
     declarations: [AppComponent, HomeComponent, DevicesComponent, SensorsComponent, StatisticsComponent, NotFoundComponent],
     bootstrap: [AppComponent],
     providers: [ConnectionStringProviderService]

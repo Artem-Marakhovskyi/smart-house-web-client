@@ -4,6 +4,7 @@ import { Sensor } from '../entities/sensor';
 import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { XunkCalendarModule } from 'xunk-calendar';
 
 @Component({
     selector: 'sensors-app',
@@ -15,12 +16,14 @@ export class SensorsComponent implements OnInit {
     sensors: Array<Sensor>;
     error: any;
     public selectedSensor: Sensor;
+    public selDate = { date:1, month:1, year:1 };
 
     constructor(
         private readonly httpService: HttpService,
         private readonly router: Router) { }
 
     ngOnInit() {
+        this.selDate = XunkCalendarModule.getToday();
         this.httpService.getFakeSensorsFromJSON().subscribe( //Fake
             (data) =>
                 this.sensors = data,
