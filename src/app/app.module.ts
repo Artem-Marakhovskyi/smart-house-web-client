@@ -4,7 +4,6 @@ import { FormsModule }   from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { DevicesComponent } from './devices-module/devices.component';
 import { SensorsComponent } from './sensors-module/sensors.component';

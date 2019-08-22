@@ -67,7 +67,7 @@
             </tr>
         </tbody>
     </table>
-    <div *ngIf="barChartData.length>0">
+    <div *ngIf="barChartData.length>0" class="text-center mxwdth1000">
         <div style="display: block">
             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
                 [legend]="barChartLegend" [chartType]="barChartType">

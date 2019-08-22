@@ -15,16 +15,6 @@ export class DevicesComponent implements OnInit {
 
     constructor(private httpService: HttpService) { }
 
-    // ngOnInit() {
-    //     // this.httpService.getDevices().subscribe(
-    //     //     (data: Array<Device>) =>
-    //     //         this.devices = data,
-    //     //     error => {
-    //     //         this.error = error.message;
-    //     //         console.log(error);
-    //     //     }
-    //     // );
-    // }
     ngOnInit() {
         this.httpService.getFakeDevicesFromJSON().subscribe( //Fake
             (data: Array<Device>) =>

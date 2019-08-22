@@ -20,19 +20,9 @@ export class SensorsComponent implements OnInit {
         private readonly httpService: HttpService,
         private readonly router: Router) { }
 
-    // ngOnInit() {
-    //     this.httpService.getSensors().subscribe(
-    //         (data: Array<Sensor>) =>
-    //             this.sensors = data,
-    //         error => {
-    //             this.error = error.message;
-    //             console.log(error);
-    //         }
-    //     );
-    // }
     ngOnInit() {
         this.httpService.getFakeSensorsFromJSON().subscribe( //Fake
-            (data: Array<Sensor>) =>
+            (data) =>
                 this.sensors = data,
             error => {
                 this.error = error.message;
@@ -42,9 +32,10 @@ export class SensorsComponent implements OnInit {
     }
 
     switchState(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
-        this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe((data: BaseHouseSlaveInvoker) => {
-            this.ngOnInit();
-        });
+        this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe(
+            () => {
+                this.ngOnInit();
+            });
     }
 
     showStatistics(sensor: Sensor): void {
@@ -52,8 +43,9 @@ export class SensorsComponent implements OnInit {
     }
 
     delete(sensor: Sensor) {
-        this.httpService.deleteSensor(sensor).subscribe((data: Sensor) => {
-            this.ngOnInit();
-        });
+        this.httpService.deleteSensor(sensor).subscribe(
+            () => {
+                this.ngOnInit();
+            });
     }
 }

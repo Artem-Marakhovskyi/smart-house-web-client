@@ -4,7 +4,6 @@ import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
 import { Device } from '../entities/device';
 import { Sensor } from '../entities/sensor';
 import { Observable } from 'rxjs';
-import { TelemetryData } from '../entities/telemetryData';
 import { ConnectionStringProviderService } from './connectionStringProvider.service';
 import { TelemetryDynamic } from '../entities/telemetryDynamic';
 

@@ -47,15 +47,7 @@ export class StatisticsComponent implements OnInit {
         );
         this.httpService.getFakeTelemetryFromJSON().subscribe(
             (data) => {
-                data.forEach(x => this.barChartLabels.push(x.timeRecieve.toString()));
-            },
-            error => {
-                this.error = error.message;
-                console.log(error);
-            }
-        );
-        this.httpService.getFakeTelemetryFromJSON().subscribe(
-            (data) => {
+                data.forEach(x => this.barChartLabels.push(x.timeRecieve.toString()));      
                 data.forEach(x => this.telemetryData.push(x.data.value));
                 this.barChartData = [
                     {
