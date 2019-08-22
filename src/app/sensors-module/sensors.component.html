@@ -5,7 +5,7 @@
             <tr>
                 <th scope="col" style="width: 60px;">#</th>
                 <th scope="col" style="width: 145px;">MAC address</th>
-                <th scope="col">Name</th>                
+                <th scope="col">Name</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
                 <th scope="col" style="width: 145px;">Delete</th>
@@ -67,7 +67,31 @@
                     <button type="button" class="btn btn-danger" (click)="delete(sensor)">Delete</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger"  (click)="showStatistics(sensor)">Show statistics</button>
+                    <!-- <button type="button" class="btn btn-danger"  (click)="showStatistics(sensor)">Show statistics</button> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Show statistics
+                    </button>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Choose start day</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                        (click)="showStatistics(sensor)">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>

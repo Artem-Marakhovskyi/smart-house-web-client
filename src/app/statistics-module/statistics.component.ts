@@ -63,7 +63,6 @@ export class StatisticsComponent implements OnInit {
                         pointHoverBackgroundColor: 'rgba(255, 255, 255, 1.0)', //Point background color when hovered.
                         pointHoverBorderColor: 'rgba(150, 150, 150, 1.0)',
                         data: this.telemetryData,
-
                         label: this.sensor.name
                     }
                 ];
