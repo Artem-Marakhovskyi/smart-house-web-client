@@ -16,7 +16,7 @@ export class SensorsComponent implements OnInit {
     sensors: Array<Sensor>;
     error: any;
     public selectedSensor: Sensor;
-    public selDate = { date:1, month:1, year:1 };
+    public selDate = { date: 1, month: 1, year: 1 };
 
     constructor(
         private readonly httpService: HttpService,
@@ -42,7 +42,8 @@ export class SensorsComponent implements OnInit {
     }
 
     showStatistics(sensor: Sensor): void {
-        this.router.navigate(['statistics', sensor.mac]);
+        this.router.navigate(['statistics', sensor.mac], { queryParams: { date: this.selDate.date, month: this.selDate.month, year:this.selDate.year} });
+        
     }
 
     delete(sensor: Sensor) {

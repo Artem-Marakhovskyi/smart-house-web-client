@@ -3,17 +3,17 @@
     <!-- Header for changing month -->
     <tr *ngIf="showHeader">
         <!-- Previous month button -->
-        <th>
+        <th colspan=2>
             <button mat-icon-button (click)="changeMonth(-1)">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             </button>
         </th>
 
         <!-- Month label -->
-        <th colspan=5>{{monthNames[openPage.month]}} {{openPage.year}}</th>
+        <th colspan=3>{{monthNames[openPage.month]}} <br>{{openPage.year}}</th>
 
         <!-- Next month button -->
-        <th>
+        <th colspan=2>
             <button mat-icon-button (click)="changeMonth(1)">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
             </button>
@@ -22,13 +22,13 @@
 
     <!-- Weekday headers -->
     <tr class="weekday">
-        <th>M</th>
-        <th>T</th>
-        <th>W</th>
-        <th>T</th>
-        <th>F</th>
-        <th>S</th>
-        <th>S</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
     </tr>
 
     <!-- The real calendar -->

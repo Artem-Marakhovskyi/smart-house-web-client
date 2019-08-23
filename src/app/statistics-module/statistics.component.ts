@@ -18,6 +18,7 @@ export class StatisticsComponent implements OnInit {
     sensors: Array<Sensor>;
     error: any;
     telemetryData: Array<number> = [];
+    public selDate = { date: 1, month: 1, year: 1 };
 
     public barChartLabels: String[] = [];
     public barChartType = 'line';
@@ -34,6 +35,11 @@ export class StatisticsComponent implements OnInit {
         private route: ActivatedRoute
     ) {
         this.mac = this.route.snapshot.params['mac'];
+        this.route.queryParams.subscribe(params => {
+            this.selDate.date = params['date'],
+            this.selDate.month = params['month'],
+            this.selDate.year = params['year']
+        })
     }
 
     ngOnInit() {
