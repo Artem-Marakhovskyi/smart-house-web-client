@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Sensor } from '../entities/sensor';
-import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
+import { HouseSlaveInvoker } from '../entities/HouseSlaveInvoker';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { XunkCalendarModule } from 'xunk-calendar';
@@ -34,8 +34,8 @@ export class SensorsComponent implements OnInit {
         );
     }
 
-    switchState(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
-        this.httpService.putRunMethod(baseHouseSlaveInvoker).subscribe(
+    switchState(HouseSlaveInvoker: HouseSlaveInvoker) {
+        this.httpService.putRunMethod(HouseSlaveInvoker).subscribe(
             () => {
                 this.ngOnInit();
             });

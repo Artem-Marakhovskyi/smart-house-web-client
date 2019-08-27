@@ -1,13 +1,10 @@
-import { BaseHouseSlaveInvoker } from "./BaseHouseSlaveInvoker";
 import { SlaveStatus } from "./slaveStatus";
-import { SlaveType } from "./slaveType";
+import { HouseSlaveInvoker } from "./houseSlaveInvoker";
 
 export class HouseSlave {
     mac: string;
     name: string;
-    connectionId: string;
     status: SlaveStatus;
-    slaveType: SlaveType;
-    on: BaseHouseSlaveInvoker;
-    off: BaseHouseSlaveInvoker;
+    on: HouseSlaveInvoker;
+    off: HouseSlaveInvoker;
 }

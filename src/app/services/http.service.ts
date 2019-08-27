@@ -1,6 +1,6 @@
 import { Injectable, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseHouseSlaveInvoker } from '../entities/BaseHouseSlaveInvoker';
+import { HouseSlaveInvoker } from '../entities/HouseSlaveInvoker';
 import { Device } from '../entities/device';
 import { Sensor } from '../entities/sensor';
 import { Observable } from 'rxjs';
@@ -39,8 +39,8 @@ export class HttpService {
         return this.http.delete(this.url + 'api/sensors/mac?mac=' + sensor.mac);
     }
 
-    putRunMethod(baseHouseSlaveInvoker: BaseHouseSlaveInvoker) {
-        const body = { connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address };// connectionId: baseHouseSlaveInvoker.connectionId, name: baseHouseSlaveInvoker.name, address: baseHouseSlaveInvoker.address
+    putRunMethod(HouseSlaveInvoker: HouseSlaveInvoker) {
+        const body = { connectionId: HouseSlaveInvoker.connectionId, name: HouseSlaveInvoker.name, address: HouseSlaveInvoker.address };
         return this.http.put(this.url + 'api/hub/devices-sensors', body);
     }
 
