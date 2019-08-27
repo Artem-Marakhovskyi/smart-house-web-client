@@ -25,7 +25,7 @@ export class DevicesComponent implements OnInit {
             }
         );
     }
-    submit(houseSlaveInvoker: HouseSlaveInvoker) {
+    runMethod(houseSlaveInvoker: HouseSlaveInvoker) {
         this.httpService.putRunMethod(houseSlaveInvoker).subscribe((data: HouseSlaveInvoker) => {
             this.ngOnInit();
         });
@@ -34,5 +34,5 @@ export class DevicesComponent implements OnInit {
         this.httpService.deleteDevice(device).subscribe((data: Device) => {
             this.ngOnInit();
         });
-    }
+    }    
 }

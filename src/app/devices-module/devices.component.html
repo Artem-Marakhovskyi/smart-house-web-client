@@ -35,14 +35,14 @@
                                 <label class="btn active btn-outline-success" disabled>
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked> On
                                 </label>
-                                <label class="btn btn-outline-success" (click)="submit(device?.off)">
+                                <label class="btn btn-outline-success" (click)="runMethod(device?.off)">
                                     <input type="radio" name="options" id="option2" autocomplete="off"> Off
                                 </label>
                             </div>
                         </ng-template>
                         <ng-template ngSwitchCase="1">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-success" (click)="submit(device?.on)">
+                                <label class="btn btn-outline-success" (click)="runMethod(device?.on)">
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked> On
                                 </label>
                                 <label class="btn active btn-outline-success" disabled>
