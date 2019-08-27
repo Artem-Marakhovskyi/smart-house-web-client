@@ -12,6 +12,7 @@ import { HouseSlaveInvoker } from '../entities/houseSlaveInvoker';
 export class DevicesComponent implements OnInit {
     devices: Array<Device>;
     error: any;
+    selectedFile: File = null;
 
     constructor(private httpService: HttpService) { }
 
@@ -34,5 +35,21 @@ export class DevicesComponent implements OnInit {
         this.httpService.deleteDevice(device).subscribe((data: Device) => {
             this.ngOnInit();
         });
+    }
+    onImageSelected(event: any) {
+        this.selectedFile = event.target.files[0];
+    }
+    onUpload(method: HouseSlaveInvoker) {
+        const fd = new FormData();
+        fd.append('image', this.selectedFile, this.selectedFile.name);
+        this.httpService.uploadImage(fd, method).subscribe( 
+            () =>
+            console.log("image uploaded"),
+            error => {
+                this.error = error.message;
+                console.log(error);
+            }
+        );
+
     }
 }

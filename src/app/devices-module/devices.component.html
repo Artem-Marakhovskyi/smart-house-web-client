@@ -8,7 +8,7 @@
                 <th scope="col">Name</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
-                <th scope="col" style="width: 145px;">Delete</th>
+                <th scope="col" style="width: 545px;">Methods</th>
             </tr>
         </thead>
         <tbody>
@@ -63,7 +63,38 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger" (click)="delete(device)">Delete</button>
+                    <div *ngFor="let method of device.methods">
+                        <div [ngSwitch]="method?.address">
+                            <ng-template ngSwitchCase="Print">
+                                <h5>{{method.name}}</h5>
+                                <form class="was-validated">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" accept="image/*" class="custom-file-input"
+                                                id="validatedCustomFile" (change)="onImageSelected($event)" required>
+                                            <label *ngIf="!selectedFile" class="custom-file-label text-left"
+                                                for="validatedCustomFile">
+                                                Choose file...
+                                            </label>
+                                            <label *ngIf="selectedFile" class="custom-file-label text-left"
+                                                for="validatedCustomFile">
+                                                {{selectedFile.name}}
+                                            </label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button *ngIf="selectedFile" class="btn btn-outline-success" type="button"
+                                                (click)="onUpload(method)">Print selected</button>
+                                            <button *ngIf="!selectedFile" class="btn btn-outline-danger disabled"
+                                                type="button" aria-disabled="true">Print selected</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </ng-template>
+                            <ng-template ngSwitchDefault>
+                                <a>unidentified method</a>
+                            </ng-template>
+                        </div>
+                    </div>
                 </td>
 
             </tr>
