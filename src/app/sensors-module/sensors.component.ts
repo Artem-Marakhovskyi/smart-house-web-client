@@ -41,9 +41,9 @@ export class SensorsComponent implements OnInit {
             });
     }
 
-    showStatistics(sensor: Sensor): void {
-        this.router.navigate(['statistics', sensor.mac], { queryParams: { date: this.selDate.date, month: this.selDate.month, year:this.selDate.year} });
-        
+    showStatistics(): void {
+        this.router.navigate(['statistics', this.selectedSensor.mac], { queryParams: { date: this.selDate.date, month: this.selDate.month, year: this.selDate.year } });
+
     }
 
     delete(sensor: Sensor) {
@@ -51,5 +51,9 @@ export class SensorsComponent implements OnInit {
             () => {
                 this.ngOnInit();
             });
+    }
+
+    public test(sensor: Sensor) {
+        this.selectedSensor = sensor;
     }
 }

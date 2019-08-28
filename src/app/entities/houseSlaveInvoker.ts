@@ -1,5 +1,3 @@
-
-
 export class HouseSlaveInvoker {
     connectionId: string;
     name: string;

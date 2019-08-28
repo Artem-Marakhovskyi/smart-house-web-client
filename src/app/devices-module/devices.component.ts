@@ -11,11 +11,12 @@ import { HouseSlaveInvoker } from '../entities/houseSlaveInvoker';
 })
 export class DevicesComponent implements OnInit {
     devices: Array<Device>;
+    selectedDevice: Device = new Device();
     error: any;
     selectedFile: File = null;
     form: any = {};
 
-    constructor(private httpService: HttpService) { 
+    constructor(private httpService: HttpService) {
         this.form = {
             name: {}
         };
@@ -44,18 +45,32 @@ export class DevicesComponent implements OnInit {
     onImageSelected(event: any) {
         this.selectedFile = event.target.files[0];
     }
-    onUpload(method: HouseSlaveInvoker) {
+    onUpload(method: HouseSlaveInvoker, str: string = null) {
+
         const formData = new FormData();
-        formData.append('image', this.selectedFile, this.selectedFile.name);
-        formData.append('data', JSON.stringify(method));
-        this.httpService.uploadImage(formData).subscribe( 
+        const indexOfImageArg = method.args.findIndex(arg => arg === 'image');
+
+        if (indexOfImageArg > -1) {
+            formData.append('image', this.selectedFile, this.selectedFile.name);
+        }
+
+        formData.append('method', JSON.stringify(method));
+
+        if (str) {
+            formData.append('data', str);
+        }
+
+        this.httpService.uploadImage(formData).subscribe(
             () =>
-            console.log("image uploaded"),
+                console.log("image uploaded"),
             error => {
                 this.error = error.message;
                 console.log(error);
             }
         );
+    }
 
+    selectDevice(device: Device) {
+        this.selectedDevice = device;
     }
 }
