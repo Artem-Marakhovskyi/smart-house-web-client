@@ -13,11 +13,25 @@
             "name": "Off",
             "address": "Off"
         },
-        "methods": [{
-            "connectionId": "scaAQiS3xEO36o4JucITMg",
-            "name": "Print",
-            "address": "Print",
-            "args" : ["image"]
-        }]
+        "methods": [
+            {
+                "connectionId": "scaAQiS3xEO36o4JucITMg",
+                "name": "Print",
+                "address": "Print",
+                "args": [
+                    "image"
+                ]
+            },
+            {
+                "connectionId": "scaAQiS3xEO36o4JucITMg",
+                "name": "Else method",
+                "address": "Else",
+                "args": [
+                    "number",
+                    "number",
+                    "string"
+                ]
+            }
+        ]
     }
 ]

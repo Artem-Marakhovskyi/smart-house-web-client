@@ -13,8 +13,13 @@ export class DevicesComponent implements OnInit {
     devices: Array<Device>;
     error: any;
     selectedFile: File = null;
+    form: any = {};
 
-    constructor(private httpService: HttpService) { }
+    constructor(private httpService: HttpService) { 
+        this.form = {
+            name: {}
+        };
+    }
 
     ngOnInit() {
         this.httpService.getFakeDevicesFromJSON().subscribe( //Fake
@@ -40,9 +45,10 @@ export class DevicesComponent implements OnInit {
         this.selectedFile = event.target.files[0];
     }
     onUpload(method: HouseSlaveInvoker) {
-        const fd = new FormData();
-        fd.append('image', this.selectedFile, this.selectedFile.name);
-        this.httpService.uploadImage(fd, method).subscribe( 
+        const formData = new FormData();
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+        formData.append('data', JSON.stringify(method));
+        this.httpService.uploadImage(formData).subscribe( 
             () =>
             console.log("image uploaded"),
             error => {

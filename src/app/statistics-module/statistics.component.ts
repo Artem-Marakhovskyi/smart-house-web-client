@@ -37,15 +37,24 @@ export class StatisticsComponent implements OnInit {
         this.mac = this.route.snapshot.params['mac'];
         this.route.queryParams.subscribe(params => {
             this.selDate.date = params['date'],
-            this.selDate.month = params['month'],
-            this.selDate.year = params['year']
+                this.selDate.month = params['month'],
+                this.selDate.year = params['year']
         })
     }
 
     ngOnInit() {
+        this.telemetryData = [];
+        this.barChartLabels = [];
+        this.barChartData = [];
         this.httpService.getFakeSensorsFromJSON().subscribe(
-            (data) =>
-                this.sensor = data[0],
+            (data:Sensor[]) => data.forEach((value:Sensor) =>{
+                if (value.mac == this.mac) {
+                    this.sensor = value;
+                }
+                else{
+                    this.sensor = null;
+                }
+            }),
             error => {
                 this.error = error.message;
                 console.log(error);
@@ -53,7 +62,7 @@ export class StatisticsComponent implements OnInit {
         );
         this.httpService.getFakeTelemetryFromJSON().subscribe(
             (data) => {
-                data.forEach(x => this.barChartLabels.push(x.timeRecieve.toString()));      
+                data.forEach(x => this.barChartLabels.push(x.timeRecieve.toString()));
                 data.forEach(x => this.telemetryData.push(x.data.value));
                 this.barChartData = [
                     {
