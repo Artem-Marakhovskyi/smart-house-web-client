@@ -47,12 +47,9 @@ export class StatisticsComponent implements OnInit {
         this.barChartLabels = [];
         this.barChartData = [];
         this.httpService.getFakeSensorsFromJSON().subscribe(
-            (data:Sensor[]) => data.forEach((value:Sensor) =>{
+            (data: Sensor[]) => data.forEach((value: Sensor) => {
                 if (value.mac == this.mac) {
                     this.sensor = value;
-                }
-                else{
-                    this.sensor = null;
                 }
             }),
             error => {
@@ -62,8 +59,12 @@ export class StatisticsComponent implements OnInit {
         );
         this.httpService.getFakeTelemetryFromJSON().subscribe(
             (data) => {
-                data.forEach(x => this.barChartLabels.push(x.timeRecieve.toString()));
-                data.forEach(x => this.telemetryData.push(x.data.value));
+                data.forEach(x => {
+                    if (x.data.MACSensor == this.mac) {
+                        this.barChartLabels.push(x.timeRecieve.toString());
+                        this.telemetryData.push(x.data.value);
+                    }
+                });
                 this.barChartData = [
                     {
                         backgroundColor: 'rgba(0, 0, 0, 0.05)',

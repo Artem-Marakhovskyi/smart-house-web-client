@@ -33,5 +33,21 @@
                 ]
             }
         ]
+    },
+    {
+        "mac": "11:AA:22:CC",
+        "name": "Sensor2",
+        "status": 0,
+        "on": {
+            "connectionId": "connectionId2",
+            "name": "On",
+            "address": "On"
+        },
+        "off": {
+            "connectionId": "connectionId2",
+            "name": "Off",
+            "address": "Off"
+        },
+        "methods": []
     }
 ]
