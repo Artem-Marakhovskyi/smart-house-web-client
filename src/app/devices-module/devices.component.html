@@ -1,72 +1,164 @@
-<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center"><strong>Devices</strong></h1>
+<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center">
+  <strong>Devices</strong>
+</h1>
 <div class="container-fluid col-md-10 offset-md-1 ">
-    <table class="table table-bordered text-center mxwdth1400">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 60px;">#</th>
-                <th scope="col" style="width: 145px;">MAC address</th>
-                <th scope="col">Name</th>
-                <th scope="col" style="width: 100px;">Status</th>
-                <th scope="col" style="width: 145px;">On/Off</th>
-                <th scope="col" style="width: 145px;">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let device of devices; let i = index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{device?.mac}}</td>
-                <td class="text-left">{{device?.name}}</td>
-                <td [ngSwitch]="device?.status">
-                    <ng-template ngSwitchCase="0">
-                        <a>On</a>
-                    </ng-template>
-                    <ng-template ngSwitchCase="1">
-                        <a>Off</a>
-                    </ng-template>
-                    <ng-template ngSwitchCase="2">
-                        <a>Error</a>
-                    </ng-template>
-                </td>
+  <table class="table table-bordered text-center mxwdth1400">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 60px;">#</th>
+        <th scope="col" style="width: 145px;">MAC address</th>
+        <th scope="col">Name</th>
+        <th scope="col" style="width: 100px;">Status</th>
+        <th scope="col" style="width: 135px;">On/Off</th>
+        <th scope="col" style="width: 220px;">Methods</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let device of devices; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ device?.mac }}</td>
+        <td class="text-left">{{ device?.name }}</td>
+        <td [ngSwitch]="device?.status">
+          <ng-template ngSwitchCase="0">
+            <a>On</a>
+          </ng-template>
+          <ng-template ngSwitchCase="1">
+            <a>Off</a>
+          </ng-template>
+          <ng-template ngSwitchCase="2">
+            <a>Error</a>
+          </ng-template>
+        </td>
+        <td>
+          <div [ngSwitch]="device?.status">
+            <ng-template ngSwitchCase="0">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn active btn-outline-success" disabled>
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked />
+                  On
+                </label>
+                <label class="btn btn-outline-success" (click)="submit(device?.off)">
+                  <input type="radio" name="options" id="option2" autocomplete="off" />
+                  Off
+                </label>
+              </div>
+            </ng-template>
+            <ng-template ngSwitchCase="1">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-success" (click)="submit(device?.on)">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked />
+                  On
+                </label>
+                <label class="btn active btn-outline-success" disabled>
+                  <input type="radio" name="options" id="option2" autocomplete="off" />
+                  Off
+                </label>
+              </div>
+            </ng-template>
+            <ng-template ngSwitchCase="2">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
+                <label class="btn btn-outline-danger">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked />
+                  On
+                </label>
+                <label class="btn btn-outline-danger">
+                  <input type="radio" name="options" id="option2" autocomplete="off" />
+                  Off
+                </label>
+              </div>
+            </ng-template>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+            (click)="selectDevice(device)">
+            Show list of methods
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-                <td>
-                    <div [ngSwitch]="device?.status">
-                        <ng-template ngSwitchCase="0">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn active btn-outline-success" disabled>
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                </label>
-                                <label class="btn btn-outline-success" (click)="runMethod(device?.off)">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                </label>
-                            </div>
-                        </ng-template>
-                        <ng-template ngSwitchCase="1">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-success" (click)="runMethod(device?.on)">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                </label>
-                                <label class="btn active btn-outline-success" disabled>
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                </label>
-                            </div>
-                        </ng-template>
-                        <ng-template ngSwitchCase="2">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
-                                <label class="btn btn-outline-danger">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                </label>
-                                <label class="btn btn-outline-danger">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                </label>
-                            </div>
-                        </ng-template>
-                    </div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger" (click)="delete(device)">Delete</button>
-                </td>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Methods</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let method of selectedDevice.methods">
+          <form class="was-validated" (submit)="onUpload(method)">
+            <h5 class="mt-3 mb-2">{{ method.name }}</h5>
+            <ul class="text-left">
+              <li>Method name: {{ method.name }}</li>
+              <li>Method address: {{ method.address }}</li>
+              <li>Method args: {{ method.args.join(", ") }}</li>
+            </ul>
+            <div *ngFor="let arg of method.args; let i = index">
+              <input type="text" *ngIf="arg !== 'image'" required />
 
-            </tr>
-        </tbody>
-    </table>
+              <div *ngIf="arg === 'image'" class="input-group">
+                <div class="custom-file">
+                  <input type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile"
+                    (change)="onImageSelected($event)" required />
+                  <label *ngIf="!selectedFile" class="custom-file-label text-left" for="validatedCustomFile">
+                    Choose file...
+                  </label>
+                  <label *ngIf="selectedFile" class="custom-file-label text-left" for="validatedCustomFile">
+                    {{ selectedFile.name }}
+                  </label>
+                </div>
+                <div class="input-group-append">
+                  <!-- <button
+                          *ngIf="selectedFile"
+                          class="btn btn-success"
+                          type="button"
+                          (click)="onUpload(method)"
+                          data-dismiss="modal"
+                        >
+                          {{ method.name }}
+                        </button> -->
+                  <!-- <button
+                          *ngIf="!selectedFile"
+                          class="btn btn-danger disabled"
+                          type="button"
+                          aria-disabled="true"
+                        >
+                          {{ method.name }}
+                        </button> -->
+                </div>
+              </div>
+            </div>
+            <!-- <div [ngSwitch]="method?.address">
+                              <ng-template ngSwitchCase="Print">
+                                  <h5 class="mt-3 mb-2">{{method.name}}</h5>-->
+
+            <!--</ng-template>
+                              <ng-template ngSwitchDefault>
+                                  <h5 class="mt-3 mb-2">{{method.name}}(no implementation yet)</h5>
+                                  <ul class="text-left">
+                                      <li>Method name: {{method.name}}</li>
+                                      <li>Method address: {{method.address}}</li>
+                                      <li>Method args: <a *ngFor="let arg of method.args; let i = index"><a *ngIf="i>0">,
+                                              </a>{{arg}}</a>
+                                      </li>
+                                  </ul>
+                              </ng-template>
+                          </div> -->
+            <input type="submit" />
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

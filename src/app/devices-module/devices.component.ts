@@ -11,9 +11,16 @@ import { HouseSlaveInvoker } from '../entities/houseSlaveInvoker';
 })
 export class DevicesComponent implements OnInit {
     devices: Array<Device>;
+    selectedDevice: Device = new Device();
     error: any;
+    selectedFile: File = null;
+    form: any = {};
 
-    constructor(private httpService: HttpService) { }
+    constructor(private httpService: HttpService) {
+        this.form = {
+            name: {}
+        };
+    }
 
     ngOnInit() {
         this.httpService.getFakeDevicesFromJSON().subscribe( //Fake
@@ -34,5 +41,36 @@ export class DevicesComponent implements OnInit {
         this.httpService.deleteDevice(device).subscribe((data: Device) => {
             this.ngOnInit();
         });
-    }    
+    }
+    onImageSelected(event: any) {
+        this.selectedFile = event.target.files[0];
+    }
+    onUpload(method: HouseSlaveInvoker, str: string = null) {
+
+        const formData = new FormData();
+        const indexOfImageArg = method.args.findIndex(arg => arg === 'image');
+
+        if (indexOfImageArg > -1) {
+            formData.append('image', this.selectedFile, this.selectedFile.name);
+        }
+
+        formData.append('method', JSON.stringify(method));
+
+        if (str) {
+            formData.append('data', str);
+        }
+
+        this.httpService.uploadImage(formData).subscribe(
+            () =>
+                console.log("image uploaded"),
+            error => {
+                this.error = error.message;
+                console.log(error);
+            }
+        );
+    }
+
+    selectDevice(device: Device) {
+        this.selectedDevice = device;
+    }
 }

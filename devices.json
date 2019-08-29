@@ -2,7 +2,6 @@
     {
         "mac": "11:AA:22:BB",
         "name": "SensorLight",
-        "connectionId": "scaAQiS3xEO36o4JucITMg",
         "status": 0,
         "on": {
             "connectionId": "scaAQiS3xEO36o4JucITMg",
@@ -13,6 +12,42 @@
             "connectionId": "scaAQiS3xEO36o4JucITMg",
             "name": "Off",
             "address": "Off"
-        }
+        },
+        "methods": [
+            {
+                "connectionId": "scaAQiS3xEO36o4JucITMg",
+                "name": "Print",
+                "address": "Print",
+                "args": [
+                    "image"
+                ]
+            },
+            {
+                "connectionId": "scaAQiS3xEO36o4JucITMg",
+                "name": "Else method",
+                "address": "Else",
+                "args": [
+                    "number",
+                    "number",
+                    "string"
+                ]
+            }
+        ]
+    },
+    {
+        "mac": "11:AA:22:CC",
+        "name": "Sensor2",
+        "status": 0,
+        "on": {
+            "connectionId": "connectionId2",
+            "name": "On",
+            "address": "On"
+        },
+        "off": {
+            "connectionId": "connectionId2",
+            "name": "Off",
+            "address": "Off"
+        },
+        "methods": []
     }
 ]

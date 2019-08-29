@@ -1,4 +1,5 @@
-<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center"><strong>Statistics for {{sensor?.name}} from {{selDate?.date}}/{{selDate?.month}}/{{selDate?.year}}</strong>
+<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center"><strong>Statistics for {{sensor?.name}} from
+        {{selDate?.date}}/{{selDate?.month}}/{{selDate?.year}}</strong>
 </h1>
 <div class="container-fluid col-md-10 offset-md-1 ">
     <table class="table table-hover table-bordered text-center mxwdth1400">
@@ -8,7 +9,7 @@
                 <th scope="col">Name</th>
                 <th scope="col" style="width: 100px;">Status</th>
                 <th scope="col" style="width: 145px;">On/Off</th>
-                <th scope="col" style="width: 145px;">Delete</th>
+                <th scope="col" style="width: 145px;">Update</th>
             </tr>
         </thead>
         <tbody>
@@ -62,7 +63,7 @@
                     </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger" (click)="delete(sensor)">Delete</button>
+                    <button type="button" class="btn btn-primary" (click)="ngOnInit()">Update</button>
                 </td>
             </tr>
         </tbody>

@@ -48,6 +48,10 @@ export class HttpService {
         return this.http.get<Array<TelemetryDynamic>>(this.url + ' api/sensors/getAllTelemetry?date=' + date);
     }
 
+    uploadImage(fd: FormData) {
+        return this.http.put(this.url + 'api/hub/devices-sensors', fd);
+    }
+
     //-----------Fake
     getFakeTelemetryFromJSON(): Observable<Array<TelemetryDynamic>> {
         return this.http.get<Array<TelemetryDynamic>>('telemetry.json');
