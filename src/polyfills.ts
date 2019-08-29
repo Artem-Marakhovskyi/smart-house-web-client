@@ -1,3 +1,3 @@
-import 'core-js';
+import "core-js";
 // zone use angular
-import 'zone.js/dist/zone';
+import "zone.js/dist/zone";

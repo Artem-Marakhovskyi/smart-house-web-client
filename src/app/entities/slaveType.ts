@@ -1,4 +1,4 @@
 export enum SlaveType {
-    Sensor,
-    Device
+  Sensor,
+  Device
 }

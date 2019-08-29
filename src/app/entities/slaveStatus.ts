@@ -1,5 +1,5 @@
 export enum SlaveStatus {
-    On,
-    Off,
-    Error
+  On,
+  Off,
+  Error
 }

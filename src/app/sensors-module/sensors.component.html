@@ -1,96 +1,171 @@
-<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center"><strong>Sensors</strong></h1>
+<h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center">
+  <strong>Sensors</strong>
+</h1>
 <div class="container-fluid col-md-10 offset-md-1 ">
-    <table class="table table-bordered text-center mxwdth1400">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 60px;">#</th>
-                <th scope="col" style="width: 145px;">MAC address</th>
-                <th scope="col">Name</th>
-                <th scope="col" style="width: 100px;">Status</th>
-                <th scope="col" style="width: 135px;">On/Off</th>
-                <th scope="col" style="width: 170px;">Show statistics</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let sensor of sensors; let i = index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{sensor?.mac}}</td>
-                <td class="text-left">{{sensor?.name}}</td>
-                <td [ngSwitch]="sensor?.status">
-                    <ng-template ngSwitchCase="0">
-                        <a>On</a>
-                    </ng-template>
-                    <ng-template ngSwitchCase="1">
-                        <a>Off</a>
-                    </ng-template>
-                    <ng-template ngSwitchCase="2">
-                        <a>Error</a>
-                    </ng-template>
-                </td>
+  <table class="table table-bordered text-center mxwdth1400">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 60px;">#</th>
+        <th scope="col" style="width: 145px;">MAC address</th>
+        <th scope="col">Name</th>
+        <th scope="col" style="width: 100px;">Status</th>
+        <th scope="col" style="width: 135px;">On/Off</th>
+        <th scope="col" style="width: 170px;">Show statistics</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sensor of sensors; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ sensor?.mac }}</td>
+        <td class="text-left">{{ sensor?.name }}</td>
+        <td [ngSwitch]="sensor?.status">
+          <ng-template ngSwitchCase="0">
+            <a>On</a>
+          </ng-template>
+          <ng-template ngSwitchCase="1">
+            <a>Off</a>
+          </ng-template>
+          <ng-template ngSwitchCase="2">
+            <a>Error</a>
+          </ng-template>
+        </td>
 
-                <td>
-                    <div [ngSwitch]="sensor?.status">
-                        <ng-template ngSwitchCase="0">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn active btn-outline-success" disabled>
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                </label>
-                                <label class="btn btn-outline-success" (click)="switchState(sensor?.off)">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                </label>
-                            </div>
-                        </ng-template>
-                        <ng-template ngSwitchCase="1">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-success" (click)="switchState(sensor?.on)">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                </label>
-                                <label class="btn active btn-outline-success" disabled>
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                </label>
-                            </div>
-                        </ng-template>
-                        <ng-template ngSwitchCase="2">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
-                                <label class="btn btn-outline-danger">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> On
-                                </label>
-                                <label class="btn btn-outline-danger">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> Off
-                                </label>
-                            </div>
-                        </ng-template>
-                    </div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-                        (click)="test(sensor)">
-                        Show statistics
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <td>
+          <div [ngSwitch]="sensor?.status">
+            <ng-template ngSwitchCase="0">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn active btn-outline-success" disabled>
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option1"
+                    autocomplete="off"
+                    checked
+                  />
+                  On
+                </label>
+                <label
+                  class="btn btn-outline-success"
+                  (click)="switchState(sensor?.off, sensor?.mac)"
+                >
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option2"
+                    autocomplete="off"
+                  />
+                  Off
+                </label>
+              </div>
+            </ng-template>
+            <ng-template ngSwitchCase="1">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label
+                  class="btn btn-outline-success"
+                  (click)="switchState(sensor?.on, sensor?.mac)"
+                >
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option1"
+                    autocomplete="off"
+                    checked
+                  />
+                  On
+                </label>
+                <label class="btn active btn-outline-success" disabled>
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option2"
+                    autocomplete="off"
+                  />
+                  Off
+                </label>
+              </div>
+            </ng-template>
+            <ng-template ngSwitchCase="2">
+              <div
+                class="btn-group btn-group-toggle"
+                data-toggle="buttons"
+                disabled
+              >
+                <label class="btn btn-outline-danger">
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option1"
+                    autocomplete="off"
+                    checked
+                  />
+                  On
+                </label>
+                <label class="btn btn-outline-danger">
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option2"
+                    autocomplete="off"
+                  />
+                  Off
+                </label>
+              </div>
+            </ng-template>
+          </div>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            (click)="test(sensor)"
+          >
+            Show statistics
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Choose start day</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="showStatistics()">Save
-                    changes</button>
-            </div>
-        </div>
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Choose start day</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="showStatistics()"
+        >
+          Save changes
+        </button>
+      </div>
     </div>
+  </div>
 </div>
