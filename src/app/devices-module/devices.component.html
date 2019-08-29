@@ -34,78 +34,35 @@
             <ng-template ngSwitchCase="0">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn active btn-outline-success" disabled>
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option1"
-                    autocomplete="off"
-                    checked
-                  />
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked />
                   On
                 </label>
-                <label
-                  class="btn btn-outline-success"
-                  (click)="submit(device?.off)"
-                >
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option2"
-                    autocomplete="off"
-                  />
+                <label class="btn btn-outline-success" (click)="submit(device?.off)">
+                  <input type="radio" name="options" id="option2" autocomplete="off" />
                   Off
                 </label>
               </div>
             </ng-template>
             <ng-template ngSwitchCase="1">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label
-                  class="btn btn-outline-success"
-                  (click)="submit(device?.on)"
-                >
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option1"
-                    autocomplete="off"
-                    checked
-                  />
+                <label class="btn btn-outline-success" (click)="submit(device?.on)">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked />
                   On
                 </label>
                 <label class="btn active btn-outline-success" disabled>
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option2"
-                    autocomplete="off"
-                  />
+                  <input type="radio" name="options" id="option2" autocomplete="off" />
                   Off
                 </label>
               </div>
             </ng-template>
             <ng-template ngSwitchCase="2">
-              <div
-                class="btn-group btn-group-toggle"
-                data-toggle="buttons"
-                disabled
-              >
+              <div class="btn-group btn-group-toggle" data-toggle="buttons" disabled>
                 <label class="btn btn-outline-danger">
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option1"
-                    autocomplete="off"
-                    checked
-                  />
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked />
                   On
                 </label>
                 <label class="btn btn-outline-danger">
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option2"
-                    autocomplete="off"
-                  />
+                  <input type="radio" name="options" id="option2" autocomplete="off" />
                   Off
                 </label>
               </div>
@@ -113,13 +70,8 @@
           </div>
         </td>
         <td>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-            (click)="selectDevice(device)"
-          >
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+            (click)="selectDevice(device)">
             Show list of methods
           </button>
         </td>
@@ -128,24 +80,13 @@
   </table>
 </div>
 
-<div
-  class="modal fade"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Methods</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -163,26 +104,12 @@
 
               <div *ngIf="arg === 'image'" class="input-group">
                 <div class="custom-file">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    class="custom-file-input"
-                    id="validatedCustomFile"
-                    (change)="onImageSelected($event)"
-                    required
-                  />
-                  <label
-                    *ngIf="!selectedFile"
-                    class="custom-file-label text-left"
-                    for="validatedCustomFile"
-                  >
+                  <input type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile"
+                    (change)="onImageSelected($event)" required />
+                  <label *ngIf="!selectedFile" class="custom-file-label text-left" for="validatedCustomFile">
                     Choose file...
                   </label>
-                  <label
-                    *ngIf="selectedFile"
-                    class="custom-file-label text-left"
-                    for="validatedCustomFile"
-                  >
+                  <label *ngIf="selectedFile" class="custom-file-label text-left" for="validatedCustomFile">
                     {{ selectedFile.name }}
                   </label>
                 </div>

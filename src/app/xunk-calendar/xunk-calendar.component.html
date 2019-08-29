@@ -10,7 +10,9 @@
         </th>
 
         <!-- Month label -->
-        <th class="text-center" colspan=3><h4>{{monthNames[openPage.month]}} {{openPage.year}}</h4></th>
+        <th class="text-center" colspan=3>
+            <h4>{{monthNames[openPage.month]}} {{openPage.year}}</h4>
+        </th>
 
         <!-- Next month button -->
         <th class="text-center" colspan=2>
@@ -34,11 +36,8 @@
     <!-- The real calendar -->
     <tr *ngFor="let row of calendar">
         <td class="xunk-calendar-cell" *ngFor="let col of row">
-            <button mat-icon-button
-                    *ngIf="col" class="xunk-calendar-day"
-                    [style.backgroundColor]="getHM(col)"
-                    [style.color]="getForeground(col)"
-                    (click)="selectDay(col)">
+            <button mat-icon-button *ngIf="col" class="xunk-calendar-day" [style.backgroundColor]="getHM(col)"
+                [style.color]="getForeground(col)" (click)="selectDay(col)">
                 <span [style.fontWeight]="isToday(col) ? 'bold' : null">{{col}}</span>
             </button>
         </td>
