@@ -58,6 +58,11 @@ export class DevicesComponent implements OnInit {
         x.value = this.sellersPermitString;
       }
     });
+    method.args.forEach(x => {
+      if (x.type != "image") {
+        x.value = (<HTMLInputElement>document.getElementById(x.name)).value;
+      }
+    });
     //}
 
     formData.append("method", JSON.stringify(method));

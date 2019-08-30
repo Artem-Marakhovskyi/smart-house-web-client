@@ -33,28 +33,24 @@
         "args": [
           {
             "value": null,
-            "name": "string",
+            "name": "email",
             "type": "string"
           },
           {
             "value": null,
-            "name": "string",
+            "name": "name",
             "type": "string"
           }
         ]
-      },{
+      },
+      {
         "connectionId": "scaAQiS3xEO36o4JucITMg",
         "name": "Else method",
         "address": "Else",
         "args": [
           {
             "value": null,
-            "name": "string",
-            "type": "string"
-          },
-          {
-            "value": null,
-            "name": "string",
+            "name": "text",
             "type": "string"
           }
         ]
