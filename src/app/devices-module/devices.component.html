@@ -154,21 +154,7 @@
         <div *ngFor="let method of selectedDevice.methods">
           <form class="was-validated" (submit)="onUpload(method)">
             <h5 class="mt-3 mb-2">{{ method.name }}</h5>
-            <ul class="text-left">
-              <li>Method name: {{ method.name }}</li>
-              <li>
-                Method args type:
-                <div style="display:inline;" *ngFor="let arg of method.args">
-                  {{ arg.type }}
-                </div>
-              </li>
-              <li>
-                Method args name:
-                <div style="display:inline;" *ngFor="let arg of method.args">
-                  {{ arg.name }}
-                </div>
-              </li>
-            </ul>
+
             <div *ngFor="let arg of method.args; let i = index">
               <div class="form-group" *ngIf="arg.type !== 'image'">
                 <label for="exampleInputEmail1">{{ arg.name }}</label>
@@ -177,7 +163,7 @@
                   class="form-control"
                   id="{{ arg.name }}"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="{{ arg.name }}"
                   required
                 />
               </div>
@@ -214,6 +200,7 @@
             </button>
           </form>
         </div>
+        <div *ngIf="selectedDevice.methods == 0">Additional methods does not exist</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">

@@ -19,17 +19,17 @@ export class HttpService {
   }
 
   getDevices(): Observable<Array<Device>> {
-    return this.http.get<Array<Device>>(this.url + "api/devices");
+    return this.http.get<Array<Device>>(this.url + "api/hub/devices");
   }
   deleteDevice(device: Device) {
     return this.http.delete(this.url + "api/devices/mac?mac=" + device.mac);
   }
   getSensors(): Observable<Array<Sensor>> {
-    return this.http.get<Array<Sensor>>(this.url + "api/sensors");
+    return this.http.get<Array<Sensor>>(this.url + "api/hub/sensors");
   }
 
   getSensor(mac: String): Observable<Sensor> {
-    return this.http.get<Sensor>(this.url + "api/sensors/mac?mac=" + mac);
+    return this.http.get<Sensor>(this.url + "api/hub/sensors/mac?mac=" + mac);
   }
 
   deleteSensor(sensor: Sensor) {

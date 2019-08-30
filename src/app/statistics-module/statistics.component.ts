@@ -3,6 +3,7 @@ import { HttpService } from "../services/http.service";
 import { Sensor } from "../entities/sensor";
 import { ActivatedRoute } from "@angular/router";
 import { ChartDataSets } from "chart.js";
+import { HouseSlaveInvoker } from "../entities/houseSlaveInvoker";
 
 @Component({
   selector: "statistics-app",
@@ -85,4 +86,11 @@ export class StatisticsComponent implements OnInit {
       }
     );
   }
+  
+  switchState(HouseSlaveInvoker: HouseSlaveInvoker, mac: string) {
+    this.httpService.putRunMethod(HouseSlaveInvoker, mac).subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
 }

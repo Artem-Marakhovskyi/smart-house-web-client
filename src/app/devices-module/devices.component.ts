@@ -50,9 +50,7 @@ export class DevicesComponent implements OnInit {
   }
   onUpload(method: HouseSlaveInvoker) {
     const formData = new FormData();
-    // const indexOfImageArg = method.args.findIndex(arg => arg.type === 'image');
 
-    // if (indexOfImageArg > -1) {
     method.args.forEach(x => {
       if (x.type == "image") {
         x.value = this.sellersPermitString;
@@ -63,15 +61,9 @@ export class DevicesComponent implements OnInit {
         x.value = (<HTMLInputElement>document.getElementById(x.name)).value;
       }
     });
-    //}
 
     formData.append("method", JSON.stringify(method));
 
-    // if (str) {
-    //     str.forEach(x => {
-    //         formData.append('data', x);
-    //     })
-    // }
     this.json = JSON.stringify(method);
 
     this.httpService.uploadFormData(this.json).subscribe(
@@ -115,14 +107,6 @@ export class DevicesComponent implements OnInit {
   _handleReaderLoaded(e: any) {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(",") + 1);
-    //this.imageSrc = base64result;
-
     this.sellersPermitString = base64result;
-
-    this.log();
-  }
-  log() {
-    // for debug
-    console.log(this.sellersPermitString);
   }
 }

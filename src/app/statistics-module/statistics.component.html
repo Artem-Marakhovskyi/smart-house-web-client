@@ -1,8 +1,9 @@
 <h1 class="container-fluid col-md-10 offset-md-1 mt-4 mb-4 text-center">
   <strong
-    >Statistics for {{ sensor?.name }} from {{ selDate?.date }}/{{
-      selDate?.month
-    }}/{{ selDate?.year }}</strong
+    >Statistics for {{ sensor?.name }} from
+    {{ selDate?.date | number: "2.0" }}.{{ selDate?.month | number: "2.0" }}.{{
+      selDate?.year
+    }}</strong
   >
 </h1>
 <div class="container-fluid col-md-10 offset-md-1 ">
@@ -48,7 +49,7 @@
                 </label>
                 <label
                   class="btn btn-outline-success"
-                  (click)="switchState(sensor?.off)"
+                  (click)="switchState(sensor?.off, sensor.mac)"
                 >
                   <input
                     type="radio"
@@ -64,7 +65,7 @@
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label
                   class="btn btn-outline-success"
-                  (click)="switchState(sensor?.on)"
+                  (click)="switchState(sensor?.on, sensor.mac)"
                 >
                   <input
                     type="radio"
