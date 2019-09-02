@@ -1,0 +1,194 @@
+[
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "3.5",
+      "type": "string"
+    },
+    "timeRecieve": "10/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "8",
+      "type": "string"
+    },
+    "timeRecieve": "11/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "6.8",
+      "type": "string"
+    },
+    "timeRecieve": "12/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "3.5",
+      "type": "string"
+    },
+    "timeRecieve": "13/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "3.5",
+      "type": "string"
+    },
+    "timeRecieve": "14/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "4.5",
+      "type": "string"
+    },
+    "timeRecieve": "15/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "3",
+      "type": "string"
+    },
+    "timeRecieve": "16/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "1",
+      "type": "string"
+    },
+    "timeRecieve": "17/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "2",
+      "type": "string"
+    },
+    "timeRecieve": "18/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "10",
+      "type": "string"
+    },
+    "timeRecieve": "19/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "13",
+      "type": "string"
+    },
+    "timeRecieve": "20/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:CC",
+      "value": "8",
+      "type": "string"
+    },
+    "timeRecieve": "21/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "0.5",
+      "type": "string"
+    },
+    "timeRecieve": "10/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "1",
+      "type": "string"
+    },
+    "timeRecieve": "11/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "2.8",
+      "type": "string"
+    },
+    "timeRecieve": "12/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "3.5",
+      "type": "string"
+    },
+    "timeRecieve": "13/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "1.5",
+      "type": "string"
+    },
+    "timeRecieve": "14/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "2.5",
+      "type": "string"
+    },
+    "timeRecieve": "15/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "3",
+      "type": "string"
+    },
+    "timeRecieve": "16/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "4",
+      "type": "string"
+    },
+    "timeRecieve": "17/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "8",
+      "type": "string"
+    },
+    "timeRecieve": "18/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "6",
+      "type": "string"
+    },
+    "timeRecieve": "19/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "1",
+      "type": "string"
+    },
+    "timeRecieve": "20/10/10"
+  },
+  {
+    "data": {
+      "MACSensor": "11:AA:22:BB",
+      "value": "0",
+      "type": "string"
+    },
+    "timeRecieve": "21/10/10"
+  }
+]

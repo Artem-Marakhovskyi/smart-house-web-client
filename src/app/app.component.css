@@ -1,0 +1,20 @@
+.shdw {
+  text-shadow: 0px 0px 2px rgb(0, 0, 0);
+}
+
+.bckgrnd {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+
+.mxwdth1000 {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mxwdth1400 {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
