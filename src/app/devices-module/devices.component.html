@@ -30,7 +30,7 @@
           </ng-template>
         </td>
         <td>
-          <div [ngSwitch]="device?.status">
+          <div [ngSwitch]="device?.status" (click)="selectDevice(device)">
             <ng-template ngSwitchCase="0">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn active btn-outline-success" disabled>
@@ -200,7 +200,15 @@
             </button>
           </form>
         </div>
-        <div *ngIf="selectedDevice.methods == 0">Additional methods does not exist</div>
+        <div
+          *ngIf="
+            selectedDevice.methods == null ||
+            selectedDevice.methods == undefined ||
+            selectedDevice.methods.length == 0
+          "
+        >
+          Additional methods does not exist
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">

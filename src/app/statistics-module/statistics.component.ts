@@ -12,7 +12,7 @@ import { HouseSlaveInvoker } from "../entities/houseSlaveInvoker";
   providers: [HttpService]
 })
 export class StatisticsComponent implements OnInit {
-  public mac: string = "null";
+  public mac: string = "undefined";
   sensor: Sensor;
   sensors: Array<Sensor>;
   error: any;

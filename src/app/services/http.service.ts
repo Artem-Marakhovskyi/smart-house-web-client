@@ -15,7 +15,7 @@ export class HttpService {
     private http: HttpClient,
     private connectionStringProviderService: ConnectionStringProviderService
   ) {
-    this.url = connectionStringProviderService.getUrl();
+    this.url = this.connectionStringProviderService.getUrl();
   }
 
   getDevices(): Observable<Array<Device>> {
