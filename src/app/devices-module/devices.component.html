@@ -30,7 +30,7 @@
           </ng-template>
         </td>
         <td>
-          <div [ngSwitch]="device?.status" (click)="selectDevice(device)">
+          <div [ngSwitch]="device?.status">
             <ng-template ngSwitchCase="0">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn active btn-outline-success" disabled>
@@ -45,6 +45,7 @@
                 </label>
                 <label
                   class="btn btn-outline-success"
+                  (click)="selectDevice(device)"
                   (click)="runMethod(device?.off)"
                 >
                   <input
@@ -61,6 +62,7 @@
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label
                   class="btn btn-outline-success"
+                  (click)="selectDevice(device)"
                   (click)="runMethod(device?.on)"
                 >
                   <input

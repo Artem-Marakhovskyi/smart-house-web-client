@@ -13,17 +13,33 @@ import { XunkCalendarModule } from "xunk-calendar";
   providers: [HttpService]
 })
 export class SensorsComponent implements OnInit {
-  sensors: Array<Sensor>;
-  error: any;
+  public sensors: Array<Sensor>;
+  public error: any;
   public selectedSensor: Sensor;
   public selDate = { date: 1, month: 1, year: 1 };
 
+  /**
+   * Initialize httpService and router
+   * @constructor
+   * @param  {HttpService} privatereadonlyhttpService
+   * @param  {Router} privatereadonlyrouter
+   */
   constructor(
     private readonly httpService: HttpService,
     private readonly router: Router
   ) {}
 
+  /**
+   * Initialization task. Run method renewState().
+   */
   ngOnInit() {
+    this.renewState();
+  }
+
+  /**
+   * Get list of sensors from WEB API and set today date
+   */
+  private renewState() {
     this.selDate = XunkCalendarModule.getToday();
     this.httpService.getFakeSensorsFromJSON().subscribe(
       //Fake
@@ -35,13 +51,21 @@ export class SensorsComponent implements OnInit {
     );
   }
 
-  switchState(HouseSlaveInvoker: HouseSlaveInvoker, mac: string) {
+  /**
+   * Run method ON or OFF which don't have parameters
+   * @param {HouseSlaveInvoker} houseSlaveInvoker - Model of method.
+   */
+  public runMethod(HouseSlaveInvoker: HouseSlaveInvoker, mac: string) {
     this.httpService.putRunMethod(HouseSlaveInvoker, mac).subscribe(() => {
-      this.ngOnInit();
+      this.renewState();
     });
   }
 
-  showStatistics(): void {
+  /**
+   * Routes to statistics module
+   * @returns void
+   */
+  public showStatistics(): void {
     this.router.navigate(["statistics", this.selectedSensor.mac], {
       queryParams: {
         date: this.selDate.date,
@@ -51,13 +75,21 @@ export class SensorsComponent implements OnInit {
     });
   }
 
-  delete(sensor: Sensor) {
+  /**
+   * Delete sensor from DB
+   * @param  {Sensor} sensor - Model of sensor
+   */
+  public delete(sensor: Sensor) {
     this.httpService.deleteSensor(sensor).subscribe(() => {
-      this.ngOnInit();
+      this.renewState();
     });
   }
 
-  public test(sensor: Sensor) {
+  /**
+   * Set sensor as selectedSensor
+   * @param  {Sensor} sensor
+   */
+  public selectSensor(sensor: Sensor) {
     this.selectedSensor = sensor;
   }
 }

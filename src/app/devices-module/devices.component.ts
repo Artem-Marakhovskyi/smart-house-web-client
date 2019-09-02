@@ -20,6 +20,7 @@ export class DevicesComponent implements OnInit {
   /**
    * Initialize form for modal
    * @constructor
+   * @param  {HttpService} privatehttpService
    */
   constructor(private httpService: HttpService) {
     this.form = {};
@@ -28,19 +29,18 @@ export class DevicesComponent implements OnInit {
   /**
    * Initialization task. Run method renewState().
    */
-  ngOnInit() {
+  public ngOnInit() {
     this.renewState();
   }
 
   /**
    * Get list of devices from WEB API.
    */
-  renewState() {
+  private renewState() {
     this.httpService.getFakeDevicesFromJSON().subscribe(
       //Fake
       (data: Array<Device>) => {
         this.devices = data;
-        console.log(this.devices);
       },
       error => {
         this.error = error.message;
@@ -53,7 +53,7 @@ export class DevicesComponent implements OnInit {
    * Run method ON or OFF which don't have parameters
    * @param {HouseSlaveInvoker} houseSlaveInvoker - Model of method.
    */
-  runMethod(houseSlaveInvoker: HouseSlaveInvoker) {
+  public runMethod(houseSlaveInvoker: HouseSlaveInvoker) {
     this.httpService
       .putRunMethod(houseSlaveInvoker, this.selectedDevice.mac)
       .subscribe((data: HouseSlaveInvoker) => {
@@ -63,9 +63,9 @@ export class DevicesComponent implements OnInit {
 
   /**
    * Delete device from DB
-   * @param {HouseSlaveInvoker} houseSlaveInvoker - Model of device.
+   * @param  {Device} device - Model of device.
    */
-  delete(device: Device) {
+  public delete(device: Device) {
     this.httpService.deleteDevice(device).subscribe(() => {
       this.renewState();
     });
@@ -75,7 +75,7 @@ export class DevicesComponent implements OnInit {
    * Set image as selectedFile
    * @param {any} event - Event that fires when we select image
    */
-  onImageSelected(event: any) {
+  public onImageSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
@@ -83,7 +83,7 @@ export class DevicesComponent implements OnInit {
    * Run method with parameters. Send FormData to WEB API.
    * @param {HouseSlaveInvoker} houseSlaveInvoker - Model of method.
    */
-  onUpload(method: HouseSlaveInvoker) {
+  public onUpload(method: HouseSlaveInvoker) {
     const formData = new FormData();
     method.args.forEach(x => {
       if (x.type == "image") {
@@ -106,11 +106,17 @@ export class DevicesComponent implements OnInit {
     );
   }
 
-  selectDevice(device: Device) {
+  /**
+   * Set device as selectedFile
+   * @param {Device} device - Device which we need to select
+   */
+  public selectDevice(device: Device) {
     this.selectedDevice = device;
     console.log(this.selectedDevice);
   }
-  //turn image to base64
+
+  //-------------------------------Turn image to base64
+
   sellersPermitFile: any;
   sellersPermitString: string;
 
