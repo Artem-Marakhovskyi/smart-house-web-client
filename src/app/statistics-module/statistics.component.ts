@@ -86,11 +86,10 @@ export class StatisticsComponent implements OnInit {
       }
     );
   }
-  
+
   switchState(HouseSlaveInvoker: HouseSlaveInvoker, mac: string) {
     this.httpService.putRunMethod(HouseSlaveInvoker, mac).subscribe(() => {
       this.ngOnInit();
     });
   }
-
 }

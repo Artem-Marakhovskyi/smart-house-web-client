@@ -1,45 +1,50 @@
 <table id="calendar" class="table table-borderless">
+  <!-- Header for changing month -->
+  <tr *ngIf="showHeader">
+    <!-- Previous month button -->
+    <th class="text-center" colspan="2">
+      <button mat-icon-button (click)="changeMonth(-1)">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+    </th>
 
-    <!-- Header for changing month -->
-    <tr *ngIf="showHeader">
-        <!-- Previous month button -->
-        <th class="text-center" colspan=2>
-            <button mat-icon-button (click)="changeMonth(-1)">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-        </th>
+    <!-- Month label -->
+    <th class="text-center" colspan="3">
+      <h4>{{ monthNames[openPage.month] }} {{ openPage.year }}</h4>
+    </th>
 
-        <!-- Month label -->
-        <th class="text-center" colspan=3>
-            <h4>{{monthNames[openPage.month]}} {{openPage.year}}</h4>
-        </th>
+    <!-- Next month button -->
+    <th class="text-center" colspan="2">
+      <button mat-icon-button (click)="changeMonth(1)">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </th>
+  </tr>
 
-        <!-- Next month button -->
-        <th class="text-center" colspan=2>
-            <button mat-icon-button (click)="changeMonth(1)">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </th>
-    </tr>
+  <!-- Weekday headers -->
+  <tr class="weekday">
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Sat</th>
+    <th>Sun</th>
+  </tr>
 
-    <!-- Weekday headers -->
-    <tr class="weekday">
-        <th>Mon</th>
-        <th>Tue</th>
-        <th>Wed</th>
-        <th>Thu</th>
-        <th>Fri</th>
-        <th>Sat</th>
-        <th>Sun</th>
-    </tr>
-
-    <!-- The real calendar -->
-    <tr *ngFor="let row of calendar">
-        <td class="xunk-calendar-cell" *ngFor="let col of row">
-            <button mat-icon-button *ngIf="col" class="xunk-calendar-day" [style.backgroundColor]="getHM(col)"
-                [style.color]="getForeground(col)" (click)="selectDay(col)">
-                <span [style.fontWeight]="isToday(col) ? 'bold' : null">{{col}}</span>
-            </button>
-        </td>
-    </tr>
+  <!-- The real calendar -->
+  <tr *ngFor="let row of calendar">
+    <td class="xunk-calendar-cell" *ngFor="let col of row">
+      <button
+        mat-icon-button
+        *ngIf="col"
+        class="xunk-calendar-day"
+        [style.backgroundColor]="getHM(col)"
+        [style.color]="getForeground(col)"
+        (click)="selectDay(col)"
+      >
+        <span [style.fontWeight]="isToday(col) ? 'bold' : null">{{ col }}</span>
+      </button>
+    </td>
+  </tr>
 </table>

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Color } from 'ng2-charts';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Color } from "ng2-charts";
 
 export interface XunkDate {
   date: number;
@@ -8,12 +8,11 @@ export interface XunkDate {
 }
 
 @Component({
-  selector: 'xunk-calendar',
-  templateUrl: './xunk-calendar.component.html',
-  styleUrls: ['./xunk-calendar.component.css']
+  selector: "xunk-calendar",
+  templateUrl: "./xunk-calendar.component.html",
+  styleUrls: ["./xunk-calendar.component.css"]
 })
 export class XunkCalendarComponent implements OnInit {
-
   /** Today */
   @Input() public today: XunkDate;
 
@@ -27,13 +26,13 @@ export class XunkCalendarComponent implements OnInit {
   @Input() public calendar: any[][] = [[]];
 
   /** Color for heat map */
-  @Input() public heatMapColor = '#00ff00';
+  @Input() public heatMapColor = "#00ff00";
 
   /** Color for primary */
-  @Input() public primaryColor = '#ff0000';
+  @Input() public primaryColor = "#ff0000";
 
   /** Color for primary foreground */
-  @Input() public primaryForeground = 'white';
+  @Input() public primaryForeground = "white";
 
   /** Heatmap data */
   @Input() public heatmap = {};
@@ -52,30 +51,44 @@ export class XunkCalendarComponent implements OnInit {
   private RGB_Primary_FG: any;
 
   /** Constants */
-  public readonly monthNames =
-    [
-      'January', 'February', 'March', 'April',
-      'May', 'June', 'July', 'August',
-      'September', 'October', 'November', 'December'
-    ];
-  public readonly dayNames =
-    [
-      'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-      'Thrusday', 'Friday', 'Saturday'
-    ];
+  public readonly monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  public readonly dayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thrusday",
+    "Friday",
+    "Saturday"
+  ];
 
   /* Get RGB from CSS color */
   public static parseColor(input: string) {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.style.color = input;
     document.body.appendChild(div);
-    const m = getComputedStyle(div).color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+    const m = getComputedStyle(div).color.match(
+      /^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i
+    );
     document.body.removeChild(div);
 
     if (m) {
       return { R: m[1], G: m[2], B: m[3] };
     } else {
-      throw new Error('Color ' + input + ' could not be parsed.');
+      throw new Error("Color " + input + " could not be parsed.");
     }
   }
 
@@ -90,8 +103,8 @@ export class XunkCalendarComponent implements OnInit {
   }
 
   /** Pad number with zeros */
-  public static zeropad(num: number, padlen: number, padchar = '0'): string {
-    const pad_char = typeof padchar !== 'undefined' ? padchar : '0';
+  public static zeropad(num: number, padlen: number, padchar = "0"): string {
+    const pad_char = typeof padchar !== "undefined" ? padchar : "0";
     const pad = new Array(1 + padlen).join(pad_char);
     return (pad + num).slice(-pad.length);
   }
@@ -110,7 +123,9 @@ export class XunkCalendarComponent implements OnInit {
     /* Parse colors*/
     this.RGB_HM = XunkCalendarComponent.parseColor(this.heatMapColor);
     this.RGB_Primary = XunkCalendarComponent.parseColor(this.primaryColor);
-    this.RGB_Primary_FG = XunkCalendarComponent.parseColor(this.primaryForeground);
+    this.RGB_Primary_FG = XunkCalendarComponent.parseColor(
+      this.primaryForeground
+    );
 
     /* Display initial */
     this.displayCalendar();
@@ -121,28 +136,26 @@ export class XunkCalendarComponent implements OnInit {
    * with the date taken separately
    */
   protected sameDate(date: number, a: XunkDate, b: XunkDate): boolean {
-    return date === b.date &&
-      a.month === b.month &&
-      a.year === b.year;
+    return date === b.date && a.month === b.month && a.year === b.year;
   }
 
   /** Returns true if fab! */
   protected isFab(col: number): string {
     /* Check if date is selected */
     if (this.sameDate(col, this.openPage, this.selectedDate)) {
-      return 'primary';
+      return "primary";
     }
 
     /* No matches found */
-    return '';
+    return "";
   }
 
   /** Returns 'primary' if col is today */
   public isToday(col: number): string {
     if (this.sameDate(col, this.openPage, this.today)) {
-      return 'primary';
+      return "primary";
     }
-    return '';
+    return "";
   }
 
   /** Select a day in the open page */
@@ -185,7 +198,8 @@ export class XunkCalendarComponent implements OnInit {
 
     /* Days in next month, and day of week */
     let col = new Date(year, month, 0).getDay();
-    let row = 0, counter = 1;
+    let row = 0,
+      counter = 1;
     const numOfDays = Number(this.getDaysOfMonth(month, year));
 
     /* Loop to build the calendar body */
@@ -212,13 +226,12 @@ export class XunkCalendarComponent implements OnInit {
     }
 
     /** Return the number of days */
-    return [31, 28, 31, 30, 31, 30,
-      31, 31, 30, 31, 30, 31][month];
+    return [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
   }
 
   /** Returns true if leap year */
   protected leapYear(year: number): boolean {
-    return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
 
   /** Gets the heat map color */
@@ -230,11 +243,14 @@ export class XunkCalendarComponent implements OnInit {
 
     /* Return heatmap color */
     const zeropad = XunkCalendarComponent.zeropad;
-    const ind = (zeropad(this.openPage.year, 4) + zeropad(this.openPage.month + 1, 2) + zeropad(day, 2));
+    const ind =
+      zeropad(this.openPage.year, 4) +
+      zeropad(this.openPage.month + 1, 2) +
+      zeropad(day, 2);
     if (ind in this.heatmap) {
       return `rgba(${this.RGB_HM.R}, ${this.RGB_HM.G}, ${this.RGB_HM.B}, ${this.heatmap[ind]})`;
     } else {
-      return 'inherit';
+      return "inherit";
     }
   }
 
