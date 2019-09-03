@@ -1,36 +1,37 @@
 .xunk-calendar {
-    width: 100%;
-    /* fill all space */
+  width: 100%;
+  /* fill all space */
 }
 
 .xunk-calendar-cell {
-    text-align: center;
-    padding: 0.5vw 0;
+  text-align: center;
+  padding: 0.5vw 0;
 }
 
 .weekday {
-    color: #cacaca;
+  color: #cacaca;
 }
 
 .xunk-calendar-day {
-    -webkit-transition: background-color 100ms linear, color 100ms linear;
-    -ms-transition: background-color 100ms linear, color 100ms linear;
-    transition: background-color 100ms linear, color 100ms linear;
+  -webkit-transition: background-color 100ms linear, color 100ms linear;
+  -ms-transition: background-color 100ms linear, color 100ms linear;
+  transition: background-color 100ms linear, color 100ms linear;
 }
 
-:hover, :focus {
-    outline: 0;
-    outline-offset: 0;
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
 }
 
 @media (min-width: 1000px) {
-    button {
-        font-size: 1.05em;
-    }
+  button {
+    font-size: 1.05em;
+  }
 }
 
 @media (min-width: 1200px) {
-    button {
-        font-size: 1.08em;
-    }
+  button {
+    font-size: 1.08em;
+  }
 }

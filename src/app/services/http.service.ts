@@ -34,7 +34,7 @@ export class HttpService {
 
   /**
    * Delete device from DB
-   * @param  {Device} device - Deleted device
+   * @param  {Device} device - Device that needs to be deleted
    */
   deleteDevice(device: Device) {
     return this.http.delete(this.url + "api/devices/mac?mac=" + device.mac);
@@ -59,7 +59,7 @@ export class HttpService {
 
   /**
    * Delete sensor from DB
-   * @param  {Sensor} sensor - Deleted sensor
+   * @param  {Sensor} sensor - Sensor that needs to be deleted
    */
   deleteSensor(sensor: Sensor) {
     return this.http.delete(this.url + "api/sensors/mac?mac=" + sensor.mac);

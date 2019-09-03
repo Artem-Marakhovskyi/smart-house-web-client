@@ -13,12 +13,21 @@ import { XunkCalendarComponent } from "./xunk-calendar.component";
   exports: [XunkCalendarComponent]
 })
 export class XunkCalendarModule {
-  /* Gets today's date */
+  /**
+   * Gets today's date
+   * @returns any
+   */
   public static getToday(): any {
     return XunkCalendarComponent.getToday();
   }
 
-  /** Pad number with zeros */
+  /**
+   * Pad number with zeros
+   * @param  {number} num
+   * @param  {number} padlen
+   * @param  {} padchar="0"
+   * @returns string
+   */
   public static zeroPad(num: number, padlen: number, padchar = "0"): string {
     return XunkCalendarComponent.zeropad(num, padlen, padchar);
   }

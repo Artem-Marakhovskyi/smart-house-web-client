@@ -16,6 +16,7 @@ export class DevicesComponent implements OnInit {
   public selectedFile: File = null;
   public form: any = {};
   private json: any;
+  private sellersPermitString: string;
 
   /**
    * Initialize form for modal
@@ -75,8 +76,14 @@ export class DevicesComponent implements OnInit {
    * Set image as selectedFile
    * @param {any} event - Event that fires when we select image
    */
-  public onImageSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+  public picked(event: any) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.selectedFile = fileList[0];
+      this.handleInputChange(this.selectedFile);
+    } else {
+      alert("No file selected");
+    }
   }
 
   /**
@@ -87,8 +94,8 @@ export class DevicesComponent implements OnInit {
     const formData = new FormData();
     method.args.forEach(x => {
       if (x.type == "image") {
-        x.value = "["+this.bace64ToByte(this.sellersPermitString)+"]";
-        //x.value = this.sellersPermitString;
+        //x.value = "[" + this.bace64ToByte(this.sellersPermitString) + "]";
+        x.value = this.sellersPermitString;
       }
     });
     method.args.forEach(x => {
@@ -116,22 +123,27 @@ export class DevicesComponent implements OnInit {
     console.log(this.selectedDevice);
   }
 
-  //-------------------------------Turn image to base64
+  /**
+   * Convert base64 to string of bytes
+   * @param {string} base64 - file in base64 format
+   * @returns string
+   */
+  bace64ToByte(base64: string): string {
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
 
-  sellersPermitFile: any;
-  sellersPermitString: string;
-
-  public picked(event: any) {
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      this.selectedFile = fileList[0];
-
-      this.sellersPermitFile = this.selectedFile;
-      this.handleInputChange(this.selectedFile); //turn into base64
-    } else {
-      alert("No file selected");
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
     }
+
+    return array.toString();
   }
+
+  /**
+   * Convert file to base64
+   * @param  {any} file - file that needs to be converted
+   */
   handleInputChange(file: any) {
     var file;
     var pattern = /image-*/;
@@ -140,25 +152,12 @@ export class DevicesComponent implements OnInit {
       alert("invalid format");
       return;
     }
-    reader.onloadend = this._handleReaderLoaded.bind(this);
+    reader.onloadend = this.handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
-  _handleReaderLoaded(e: any) {
+  handleReaderLoaded(e: any) {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(",") + 1);
     this.sellersPermitString = base64result;
-  }
-  //-----------------
-  bace64ToByte(base64:string) {
-    
-    var raw = window.atob(base64);
-    var rawLength = raw.length;
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
-
-    for (let i = 0; i < rawLength; i++) {
-      array[i] = raw.charCodeAt(i);
-    }
-    
-    return array.toString();
   }
 }
