@@ -87,7 +87,8 @@ export class DevicesComponent implements OnInit {
     const formData = new FormData();
     method.args.forEach(x => {
       if (x.type == "image") {
-        x.value = this.sellersPermitString;
+        x.value = "["+this.bace64ToByte(this.sellersPermitString)+"]";
+        //x.value = this.sellersPermitString;
       }
     });
     method.args.forEach(x => {
@@ -146,5 +147,18 @@ export class DevicesComponent implements OnInit {
     let reader = e.target;
     var base64result = reader.result.substr(reader.result.indexOf(",") + 1);
     this.sellersPermitString = base64result;
+  }
+  //-----------------
+  bace64ToByte(base64:string) {
+    
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
+    }
+    
+    return array.toString();
   }
 }
