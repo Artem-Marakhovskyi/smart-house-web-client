@@ -15,6 +15,7 @@ import { XunkCalendarModule } from "xunk-calendar";
 export class SensorsComponent implements OnInit {
   public sensors: Array<Sensor>;
   public error: any;
+  public myVar: any;
   public selectedSensor: Sensor;
   public selDate = { date: 1, month: 1, year: 1 };
 
@@ -34,6 +35,12 @@ export class SensorsComponent implements OnInit {
    */
   ngOnInit() {
     this.renewState();
+
+    this.myVar = setInterval(() => this.renewState.apply(this), 20000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.myVar);
   }
 
   /**
@@ -41,7 +48,7 @@ export class SensorsComponent implements OnInit {
    */
   private renewState() {
     this.selDate = XunkCalendarModule.getToday();
-    this.httpService.getFakeSensorsFromJSON().subscribe(
+    this.httpService.getSensors().subscribe(
       data => (this.sensors = data),
       error => {
         this.error = error.message;

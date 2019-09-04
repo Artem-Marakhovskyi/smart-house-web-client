@@ -16,6 +16,7 @@ export class StatisticsComponent implements OnInit {
   public sensor: Sensor;
   public sensors: Array<Sensor>;
   public error: any;
+  public myVar: any;
   public telemetryData: Array<number> = [];
   public selDate = { date: 1, month: 1, year: 1 };
 
@@ -40,30 +41,32 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit() {
     this.renewState();
+
+    this.myVar = setInterval(() => this.renewState.apply(this), 20000);
   }
 
+  ngOnDestroy() {
+    clearInterval(this.myVar);
+  }
   /**
    * Get sensor state and telemetry from WEB API. Make new chart.
    */
   private renewState() {
+    console.log("-");
     this.telemetryData = [];
     this.barChartLabels = [];
     this.barChartData = [];
-    this.httpService.getFakeSensorsFromJSON().subscribe(
-      (data: Sensor[]) =>
-        data.forEach((value: Sensor) => {
-          if (value.mac == this.mac) {
-            this.sensor = value;
-          }
-        }),
+    this.httpService.getSensor(this.mac).subscribe(
+      (data: Sensor) => (this.sensor = data),
       error => {
         this.error = error.message;
         console.log(error);
       }
     );
     this.httpService
-      .getFakeTelemetryFromJSON(
-        this.selDate.date + "." + this.selDate.month + "." + this.selDate.year
+      .getTelemetry(
+        this.selDate.date + "." + this.selDate.month + "." + this.selDate.year,
+        this.mac
       )
       .subscribe(
         data => {

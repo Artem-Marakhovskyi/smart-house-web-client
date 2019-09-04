@@ -16,6 +16,7 @@ export class DevicesComponent implements OnInit {
   public selectedFile: File = null;
   public form: any = {};
   private json: any;
+  private myVar: any;
   private sellersPermitString: string;
 
   /**
@@ -32,13 +33,19 @@ export class DevicesComponent implements OnInit {
    */
   public ngOnInit() {
     this.renewState();
+
+    this.myVar = setInterval(() => this.renewState.apply(this), 20000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.myVar);
   }
 
   /**
    * Get list of devices from WEB API.
    */
   private renewState() {
-    this.httpService.getFakeDevicesFromJSON().subscribe(
+    this.httpService.getDevices().subscribe(
       (data: Array<Device>) => {
         this.devices = data;
       },
