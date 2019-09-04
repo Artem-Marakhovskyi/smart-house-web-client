@@ -39,7 +39,6 @@ export class DevicesComponent implements OnInit {
    */
   private renewState() {
     this.httpService.getFakeDevicesFromJSON().subscribe(
-      //Fake
       (data: Array<Device>) => {
         this.devices = data;
       },
@@ -94,7 +93,6 @@ export class DevicesComponent implements OnInit {
     const formData = new FormData();
     method.args.forEach(x => {
       if (x.type == "image") {
-        //x.value = "[" + this.bace64ToByte(this.sellersPermitString) + "]";
         x.value = this.sellersPermitString;
       }
     });

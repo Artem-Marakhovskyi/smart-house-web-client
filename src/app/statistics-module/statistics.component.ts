@@ -13,10 +13,10 @@ import { HouseSlaveInvoker } from "../entities/houseSlaveInvoker";
 })
 export class StatisticsComponent implements OnInit {
   public mac: string = "undefined";
-  sensor: Sensor;
-  sensors: Array<Sensor>;
-  error: any;
-  telemetryData: Array<number> = [];
+  public sensor: Sensor;
+  public sensors: Array<Sensor>;
+  public error: any;
+  public telemetryData: Array<number> = [];
   public selDate = { date: 1, month: 1, year: 1 };
 
   public barChartLabels: String[] = [];
@@ -39,6 +39,13 @@ export class StatisticsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.renewState();
+  }
+
+  /**
+   * Get sensor state and telemetry from WEB API. Make new chart.
+   */
+  private renewState() {
     this.telemetryData = [];
     this.barChartLabels = [];
     this.barChartData = [];
@@ -54,42 +61,51 @@ export class StatisticsComponent implements OnInit {
         console.log(error);
       }
     );
-    this.httpService.getFakeTelemetryFromJSON().subscribe(
-      data => {
-        data.forEach(x => {
-          if (x.data.MACSensor == this.mac) {
-            this.barChartLabels.push(x.timeRecieve.toString());
-            this.telemetryData.push(x.data.value);
-          }
-        });
-        this.barChartData = [
-          {
-            backgroundColor: "rgba(0, 0, 0, 0.05)",
-            borderColor: "rgba(0, 0, 0, 0.7)",
-            borderJoinStyle: "round", //Line joint style "bevel" || "round" || "miter"
-            borderWidth: 4,
-            cubicInterpolationMode: "monotone", //interpolation modes 'default','monotone'
-            lineTension: 0, //Bezier curve tension of the line. Set to 0 to draw straightlines.
-            pointBackgroundColor: "rgba(220, 0, 0, 1.0)", //The fill color for points.
-            pointBorderColor: "rgba(0, 0, 0, 1.0)",
-            pointBorderWidth: 0,
-            pointHoverBackgroundColor: "rgba(255, 255, 255, 1.0)", //Point background color when hovered.
-            pointHoverBorderColor: "rgba(150, 150, 150, 1.0)",
-            data: this.telemetryData,
-            label: this.sensor.name
-          }
-        ];
-      },
-      error => {
-        this.error = error.message;
-        console.log(error);
-      }
-    );
+    this.httpService
+      .getFakeTelemetryFromJSON(
+        this.selDate.date + "." + this.selDate.month + "." + this.selDate.year
+      )
+      .subscribe(
+        data => {
+          data.forEach(x => {
+            if (x.data.MACSensor == this.mac) {
+              this.barChartLabels.push(x.timeRecieve.toString());
+              this.telemetryData.push(x.data.value);
+            }
+          });
+          this.barChartData = [
+            {
+              backgroundColor: "rgba(0, 0, 0, 0.05)",
+              borderColor: "rgba(0, 0, 0, 0.7)",
+              borderJoinStyle: "round", //Line joint style "bevel" || "round" || "miter"
+              borderWidth: 4,
+              cubicInterpolationMode: "monotone", //interpolation modes 'default','monotone'
+              lineTension: 0, //Bezier curve tension of the line. Set to 0 to draw straightlines.
+              pointBackgroundColor: "rgba(220, 0, 0, 1.0)", //The fill color for points.
+              pointBorderColor: "rgba(0, 0, 0, 1.0)",
+              pointBorderWidth: 0,
+              pointHoverBackgroundColor: "rgba(255, 255, 255, 1.0)", //Point background color when hovered.
+              pointHoverBorderColor: "rgba(150, 150, 150, 1.0)",
+              data: this.telemetryData,
+              label: this.sensor.name
+            }
+          ];
+        },
+        error => {
+          this.error = error.message;
+          console.log(error);
+        }
+      );
   }
 
+  /**
+   * Run method ON or OFF which don't have parameters
+   * @param {HouseSlaveInvoker} houseSlaveInvoker - Model of method.
+   * @param {string} mac - MAC address of sensor
+   */
   switchState(HouseSlaveInvoker: HouseSlaveInvoker, mac: string) {
     this.httpService.putRunMethod(HouseSlaveInvoker, mac).subscribe(() => {
-      this.ngOnInit();
+      this.renewState();
     });
   }
 }

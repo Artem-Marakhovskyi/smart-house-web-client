@@ -1,5 +1,5 @@
 export class TelemetryData {
   MACSensor: string;
-  value: number; //atualy was string
+  value: number;
   type: string;
 }

@@ -102,7 +102,7 @@ export class HttpService {
   }
 
   //-----------Fake
-  getFakeTelemetryFromJSON(): Observable<Array<TelemetryDynamic>> {
+  getFakeTelemetryFromJSON(date: String): Observable<Array<TelemetryDynamic>> {
     return this.http.get<Array<TelemetryDynamic>>("telemetry.json");
   }
 

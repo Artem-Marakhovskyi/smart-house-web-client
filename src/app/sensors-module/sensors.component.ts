@@ -42,7 +42,6 @@ export class SensorsComponent implements OnInit {
   private renewState() {
     this.selDate = XunkCalendarModule.getToday();
     this.httpService.getFakeSensorsFromJSON().subscribe(
-      //Fake
       data => (this.sensors = data),
       error => {
         this.error = error.message;
@@ -69,7 +68,7 @@ export class SensorsComponent implements OnInit {
     this.router.navigate(["statistics", this.selectedSensor.mac], {
       queryParams: {
         date: this.selDate.date,
-        month: this.selDate.month,
+        month: this.selDate.month + 1,
         year: this.selDate.year
       }
     });
