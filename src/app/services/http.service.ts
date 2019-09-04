@@ -40,6 +40,13 @@ export class HttpService {
     return this.http.delete(this.url + "api/devices/mac?mac=" + device.mac);
   }
 
+  updateDevice(device: Device) {
+    return this.http.put(this.url + "api/hub/devices", device);
+  }
+
+  updateSensor(sensor: Sensor) {
+    return this.http.put(this.url + "api/hub/sensors", sensor);
+  }
   /**
    * Get list of sensors from WEB API
    * @returns Observable
@@ -87,12 +94,9 @@ export class HttpService {
    * @param  {String} date - Selected date
    * @returns Observable
    */
-  getTelemetry(
-    date: String,
-    mac: String
-  ): Observable<Array<TelemetryDynamic>> {
+  getTelemetry(date: String, mac: String): Observable<Array<TelemetryDynamic>> {
     return this.http.get<Array<TelemetryDynamic>>(
-      this.url + " api/sensors/statistics?mac=" + mac + "&date=" + date
+      this.url + "api/sensors/statistics?mac=" + mac + "&startDateTime=" + date
     );
   }
 
@@ -105,7 +109,10 @@ export class HttpService {
   }
 
   //-----------Fake
-  getFakeTelemetryFromJSON(date: String, mac: String): Observable<Array<TelemetryDynamic>> {
+  getFakeTelemetryFromJSON(
+    date: String,
+    mac: String
+  ): Observable<Array<TelemetryDynamic>> {
     return this.http.get<Array<TelemetryDynamic>>("telemetry.json");
   }
 

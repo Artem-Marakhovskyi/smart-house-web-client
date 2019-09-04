@@ -78,6 +78,15 @@ export class DevicesComponent implements OnInit {
     });
   }
 
+  nameUpdate() {
+    this.selectedDevice.name = (<HTMLInputElement>(
+      document.getElementById(this.selectedDevice.mac)
+    )).value;
+    this.httpService.updateDevice(this.selectedDevice).subscribe(() => {
+      this.renewState();
+    });
+  }
+
   /**
    * Set image as selectedFile
    * @param {any} event - Event that fires when we select image

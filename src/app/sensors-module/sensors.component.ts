@@ -16,7 +16,7 @@ export class SensorsComponent implements OnInit {
   public sensors: Array<Sensor>;
   public error: any;
   public myVar: any;
-  public selectedSensor: Sensor;
+  public selectedSensor: Sensor = new Sensor();
   public selDate = { date: 1, month: 1, year: 1 };
 
   /**
@@ -67,6 +67,14 @@ export class SensorsComponent implements OnInit {
     });
   }
 
+  nameUpdate() {
+    this.selectedSensor.name = (<HTMLInputElement>(
+      document.getElementById(this.selectedSensor.mac)
+    )).value;
+    this.httpService.updateSensor(this.selectedSensor).subscribe(() => {
+      this.renewState();
+    });
+  }
   /**
    * Routes to statistics module
    * @returns void

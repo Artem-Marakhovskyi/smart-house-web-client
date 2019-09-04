@@ -10,6 +10,7 @@
         <th scope="col">Name</th>
         <th scope="col" style="width: 100px;">Status</th>
         <th scope="col" style="width: 135px;">On/Off</th>
+        <th scope="col" style="width: 140px;">Rename sensor</th>
         <th scope="col" style="width: 170px;">Show statistics</th>
       </tr>
     </thead>
@@ -118,6 +119,17 @@
             type="button"
             class="btn btn-primary"
             data-toggle="modal"
+            data-target="#exampleModalCenterUpdateName"
+            (click)="selectSensor(sensor)"
+          >
+            Rename
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
             data-target="#exampleModalCenter"
             (click)="selectSensor(sensor)"
           >
@@ -164,6 +176,60 @@
           (click)="showStatistics()"
         >
           Show statistics
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="exampleModalCenterUpdateName"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterUpdateNameTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Rename</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <form class="was-validated" (submit)="nameUpdate()">
+            <div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">{{
+                  selectedSensor.name
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="{{ selectedSensor.mac }}"
+                  aria-describedby="emailHelp"
+                  placeholder="{{ selectedSensor.name }}"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-secondary mt-3 mb-2">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
         </button>
       </div>
     </div>

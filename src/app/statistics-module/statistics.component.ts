@@ -65,7 +65,7 @@ export class StatisticsComponent implements OnInit {
     );
     this.httpService
       .getTelemetry(
-        this.selDate.date + "." + this.selDate.month + "." + this.selDate.year,
+        this.selDate.date + "/" + this.selDate.month + "/" + this.selDate.year,
         this.mac
       )
       .subscribe(

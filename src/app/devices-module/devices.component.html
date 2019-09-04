@@ -10,7 +10,8 @@
         <th scope="col">Name</th>
         <th scope="col" style="width: 100px;">Status</th>
         <th scope="col" style="width: 135px;">On/Off</th>
-        <th scope="col" style="width: 220px;">Methods</th>
+        <th scope="col" style="width: 135px;">Methods</th>
+        <th scope="col" style="width: 140px;">Rename device</th>
       </tr>
     </thead>
     <tbody>
@@ -122,7 +123,7 @@
             data-target="#exampleModalCenter"
             (click)="selectDevice(device)"
           >
-            Show list of methods
+            Methods
           </button>
         </td>
         <td>
@@ -133,7 +134,7 @@
             data-target="#exampleModalCenterUpdateName"
             (click)="selectDevice(device)"
           >
-            Show list of methods
+            Rename
           </button>
         </td>
       </tr>
@@ -221,6 +222,61 @@
           "
         >
           Additional methods does not exist
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalCenterUpdateName"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterUpdateNameTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Rename</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <form class="was-validated" (submit)="nameUpdate()">
+            <div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">{{
+                  selectedDevice.name
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="{{ selectedDevice.mac }}"
+                  aria-describedby="emailHelp"
+                  placeholder="{{ selectedDevice.name }}"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-secondary mt-3 mb-2">
+              Submit
+            </button>
+          </form>
         </div>
       </div>
       <div class="modal-footer">
