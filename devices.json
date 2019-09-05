@@ -24,8 +24,8 @@
         ]
       },
       {
-        "name": "Else method",
-        "address": "Else",
+        "name": "Print card",
+        "address": "printCard",
         "args": [
           {
             "value": null,
@@ -40,8 +40,8 @@
         ]
       },
       {
-        "name": "Else method",
-        "address": "Else",
+        "name": "Print text",
+        "address": "printText",
         "args": [
           {
             "value": null,
@@ -51,19 +51,5 @@
         ]
       }
     ]
-  },
-  {
-    "mac": "11:AA:22:CC",
-    "name": "Sensor2",
-    "status": 0,
-    "on": {
-      "name": "On",
-      "address": "On"
-    },
-    "off": {
-      "name": "Off",
-      "address": "Off"
-    },
-    "methods": []
   }
 ]

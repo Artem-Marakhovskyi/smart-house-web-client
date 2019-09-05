@@ -31,7 +31,7 @@ export class SensorsComponent implements OnInit {
   ) {}
 
   /**
-   * Initialization task. Run method renewState().
+   * Initialization task. Run method renewState(). Refresh data every 20 sec 
    */
   ngOnInit() {
     this.renewState();
@@ -39,6 +39,9 @@ export class SensorsComponent implements OnInit {
     this.myVar = setInterval(() => this.renewState.apply(this), 20000);
   }
 
+  /**
+   * Stop refresh data
+   */
   ngOnDestroy() {
     clearInterval(this.myVar);
   }

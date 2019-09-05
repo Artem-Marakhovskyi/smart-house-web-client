@@ -1,5 +1,7 @@
+import { TypeArgument } from "./typeArgument";
+
 export class MethodArgument {
   value: string;
   name: string;
-  type: string;
+  cast: number;
 }

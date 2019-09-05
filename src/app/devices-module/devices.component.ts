@@ -13,6 +13,7 @@ export class DevicesComponent implements OnInit {
   public devices: Array<Device>;
   public selectedDevice: Device = new Device();
   public error: any;
+  public cast: any;
   public selectedFile: File = null;
   public form: any = {};
   private json: any;
@@ -29,14 +30,15 @@ export class DevicesComponent implements OnInit {
   }
 
   /**
-   * Initialization task. Run method renewState().
+   * Initialization task. Run method renewState(). Refresh data every 20 sec
    */
   public ngOnInit() {
     this.renewState();
-
     this.myVar = setInterval(() => this.renewState.apply(this), 20000);
   }
-
+  /**
+   * Stop refresh data
+   */
   ngOnDestroy() {
     clearInterval(this.myVar);
   }
@@ -78,6 +80,9 @@ export class DevicesComponent implements OnInit {
     });
   }
 
+  /**
+   * Rename device
+   */
   nameUpdate() {
     this.selectedDevice.name = (<HTMLInputElement>(
       document.getElementById(this.selectedDevice.mac)
@@ -108,24 +113,30 @@ export class DevicesComponent implements OnInit {
   public onUpload(method: HouseSlaveInvoker) {
     const formData = new FormData();
     method.args.forEach(x => {
-      if (x.type == "image") {
+      this.cast =x[Object.keys(x)[2]];
+      //x.cast = 1;
+      debugger
+      if (this.cast == 1) {
+        debugger;
         x.value = this.sellersPermitString;
       }
     });
     method.args.forEach(x => {
-      if (x.type != "image") {
+      if (this.cast != 1) {
         x.value = (<HTMLInputElement>document.getElementById(x.name)).value;
       }
     });
     formData.append("method", JSON.stringify(method));
     this.json = JSON.stringify(method);
-    this.httpService.uploadFormData(this.json).subscribe(
-      () => console.log("FormData uploaded"),
-      error => {
-        this.error = error.message;
-        console.log(error);
-      }
-    );
+    this.httpService
+      .uploadFormData(this.json, this.selectedDevice.mac)
+      .subscribe(
+        () => console.log("FormData uploaded"),
+        error => {
+          this.error = error.message;
+          console.log(error);
+        }
+      );
   }
 
   /**

@@ -1,5 +1,5 @@
 import { Injectable, Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HouseSlaveInvoker } from "../entities/HouseSlaveInvoker";
 import { Device } from "../entities/device";
 import { Sensor } from "../entities/sensor";
@@ -11,6 +11,7 @@ import { TelemetryDynamic } from "../entities/telemetryDynamic";
 export class HttpService {
   public url: string;
 
+  
   /**
    * Initialize. Set url from ./connectionStringProvider.service
    * @constructor
@@ -94,9 +95,9 @@ export class HttpService {
    * @param  {String} date - Selected date
    * @returns Observable
    */
-  getTelemetry(date: String, mac: String): Observable<Array<TelemetryDynamic>> {
+  getTelemetry(startDate: String, endDate: String, mac: String): Observable<Array<TelemetryDynamic>> {
     return this.http.get<Array<TelemetryDynamic>>(
-      this.url + "api/sensors/statistics?mac=" + mac + "&startDateTime=" + date
+      this.url + "api/sensors/statistics/" + mac + "/" + startDate+ "/" + endDate
     );
   }
 
@@ -104,8 +105,13 @@ export class HttpService {
    * Run method with parameters. Send FormData to WEB API.
    * @param  {FormData} fd - FormData which send to WEB API.
    */
-  uploadFormData(fd: FormData) {
-    return this.http.put(this.url + "api/hub/devices-sensors", fd);
+  uploadFormData(fd: FormData, mac: String) {
+    var myheaders={
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+      })
+  }
+    return this.http.put(this.url + "api/hub/devices-sensors/" + mac, fd, myheaders);
   }
 
   //-----------Fake

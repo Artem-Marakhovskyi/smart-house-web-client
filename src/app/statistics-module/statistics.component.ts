@@ -13,20 +13,22 @@ import { HouseSlaveInvoker } from "../entities/houseSlaveInvoker";
 })
 export class StatisticsComponent implements OnInit {
   public mac: string = "undefined";
-  public sensor: Sensor;
+  public sensor: Sensor = new Sensor;
   public sensors: Array<Sensor>;
   public error: any;
   public myVar: any;
   public telemetryData: Array<number> = [];
   public selDate = { date: 1, month: 1, year: 1 };
+  public dateNow = new Date();
 
   public barChartLabels: String[] = [];
   public barChartType = "line";
-  public barChartLegend = true;
+  public barChartLegend = false;
   public barChartData: ChartDataSets[] = [];
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
+    animation: false,
     responsive: true
   };
 
@@ -41,40 +43,50 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit() {
     this.renewState();
-
     this.myVar = setInterval(() => this.renewState.apply(this), 20000);
   }
 
+  /**
+   * Stop refresh data
+   */
   ngOnDestroy() {
     clearInterval(this.myVar);
   }
+
   /**
    * Get sensor state and telemetry from WEB API. Make new chart.
    */
-  private renewState() {
+  public renewState() {
     console.log("-");
     this.telemetryData = [];
     this.barChartLabels = [];
     this.barChartData = [];
-    this.httpService.getSensor(this.mac).subscribe(
-      (data: Sensor) => (this.sensor = data),
+    this.httpService.getSensors().subscribe(
+      (data: Sensor[]) =>
+        data.forEach((value: Sensor) => {
+          if (value.mac == this.mac) {
+            this.sensor = value;
+          }
+        }),
       error => {
         this.error = error.message;
         console.log(error);
       }
     );
+
     this.httpService
       .getTelemetry(
-        this.selDate.date + "/" + this.selDate.month + "/" + this.selDate.year,
+        this.selDate.date + "." + this.selDate.month + "." + this.selDate.year,
+        this.dateNow.getDate()+"."+this.dateNow.getMonth()+"."+this.dateNow.getFullYear(),    
         this.mac
       )
       .subscribe(
         data => {
           data.forEach(x => {
-            if (x.data.MACSensor == this.mac) {
-              this.barChartLabels.push(x.timeRecieve.toString());
+            x.data.MACSensor = this.mac
+              this.barChartLabels.push(x.timeToSend.toString());
               this.telemetryData.push(x.data.value);
-            }
+            
           });
           this.barChartData = [
             {
